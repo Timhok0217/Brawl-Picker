@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Brawl Picker</title>
+</head>
+<body>
+
+    <div>
+        <div>
+            <h1>Brawl Picker</h1>
+        </div>
+        <br>
+        <div>
+            <h2>Player Info</h2>
+            <div>
+                <b>Name:</b> {{ data.name }}<br>
+                <b>Tag:</b> {{ data.tag }}<br>
+                <b>Trophies:</b> {{ data.trophies }}<br>
+                <b>Highest trophies:</b> {{ data.highest_trophies }}<br>
+                <b>EXP Level:</b> {{ data.exp_level }}<br>
+                <b>3x3 Wins:</b> {{ data.3x3_wins }}<br>
+                <b>Solo Wins:</b> {{ data.solo_wins }}<br>
+                <b>Duo Wins:</b> {{ data.duo_wins }}<br>
+                <b>Player icon id:</b> {{ data.player_icon_id }}<br><br>
+            </div>
+            <h2>GemGrab Battles Info</h2>
+            <div>
+                <b>Battles Count:</b> {{ gemgrab_context.battles_count }}<br>
+                <b>Victories:</b> {{ gemgrab_context.victories }}<br>
+                <b>Percentage of wins:</b> {{ gemgrab_context.percent_victories }} %<br>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

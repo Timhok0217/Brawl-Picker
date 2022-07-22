@@ -1,0 +1,97 @@
+body{
+    margin: 0;
+    background: #F5F7FB;
+}
+
+.header_brawl{
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    height: 45px;
+    padding: 20px;
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+}
+
+.header_title{
+    font-family: 'Karla';
+    font-style: normal;
+    font-size: 30px;
+    line-height: 24px;
+    margin-left: 30px;
+
+    margin-right: auto;
+
+    color: white;
+}
+
+.list_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Karla';
+    font-style: normal;
+    font-size: 22px;
+    list-style-type: none;
+}
+
+.header_Map_Tier_List{
+    margin-right: 100px;
+}
+
+.header_Brawler_Tier_List{
+    margin-right: 100px;
+}
+
+.header_Profile{
+    margin-right: 100px;
+}
+
+
+main {
+    padding: 20px 40px;
+}
+
+.input_there{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+.input_tag{
+    font-family: "Karla", sans-serif;
+    border-radius: 20px;
+    border: 3px solid #8b00ff;
+    text-indent: 10px;
+    width: 250px;
+    height: 50px;
+    font-size: 20px;
+    font-style: bold;
+
+    text-align: center;
+
+}
+
+.btn_tag{
+    margin-top: 15px;
+    font-family: "Karla", sans-serif;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 40px;
+    font-size: 16px;
+    text-indent: 7px;
+    width: 100px;
+}
+
+.btn_tag:focus {
+    outline: none;
+}
+
+.btn_tag:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
