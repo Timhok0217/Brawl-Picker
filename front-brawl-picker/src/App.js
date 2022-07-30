@@ -3,6 +3,11 @@ import axios from "axios";
 import Header from "./components/Header";
 
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function App () {
 
     const [tag, setTag] = React.useState({
