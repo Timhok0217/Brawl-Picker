@@ -1,90 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
-    margin: 0;
-    background: #F5F7FB;
+    @apply bg-body_bg
 }
 
 .header_brawl{
-    display: flex;
+    @apply flex items-center text-white h-20 px-7; 
+    /* display: flex;
     align-items: center;
     color: #FFFFFF;
     height: 45px;
-    padding: 20px;
+    padding: 20px; */
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
 .header_title{
+    @apply font-normal text-3xl leading-6 ml-5 mr-auto text-white;
     font-family: 'Karla';
-    font-style: normal;
+    /* font-style: normal;
     font-size: 30px;
     line-height: 24px;
     margin-left: 30px;
 
     margin-right: auto;
 
-    color: white;
+    color: white; */
 }
 
-.list_header{
-    display: flex;
+.list_header{ 
+    @apply flex justify-center items-center font-normal text-xl  gap-0 md:gap-8;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Karla';
     font-style: normal;
     font-size: 22px;
+    gap: 40px;*/
+    font-family: 'Karla';
     list-style-type: none;
+    
 }
 
-.header_Map_Tier_List{
-    margin-right: 100px;
+.header_brawl a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.header_Brawler_Tier_List{
-    margin-right: 100px;
+.header_brawl li.active {
+    @apply text-black
 }
 
-.header_Profile{
-    margin-right: 100px;
+.header_brawl li:hover {
+    @apply bg-indigo-500
 }
+
+.MapTierList{
+    @apply invisible text-xs md:visible md:text-xl
+}
+
+.BrawlerTierList{
+    @apply invisible text-xs md:visible md:text-xl
+}
+
+/* .Profile{
+    margin-right: 100px;
+} */
 
 
 main {
-    padding: 20px 40px;
+    @apply px-5 py-10
+    
 }
 
 .input_there{
-    display: flex;
+    @apply flex flex-col justify-center items-center self-center
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    align-items: center;
+    align-items: center; */
 }
 
 .input_tag{
+    @apply w-64 h-16 indent-1 text-xl font-medium text-center rounded-2xl border-input_tag border-solid;
     font-family: "Karla", sans-serif;
-    border-radius: 20px;
-    border: 3px solid #8b00ff;
+    border-width: 3px;
+    /* border-radius: 20px;
     text-indent: 10px;
     width: 250px;
     height: 50px;
     font-size: 20px;
     font-style: bold;
 
-    text-align: center;
+    text-align: center; */
 
 }
 
 .btn_tag{
-    margin-top: 15px;
+    @apply  w-24 mt-4 rounded-2xl border-0 text-white cursor-pointer h-10 text-base; 
     font-family: "Karla", sans-serif;
-    border-radius: 15px;
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+    /* margin-top: 15px;
+    border-radius: 15px;
     border: none;
     color: #FFFFFF;
     cursor: pointer;
     height: 40px;
     font-size: 16px;
     text-indent: 7px;
-    width: 100px;
+    width: 100px; */
 }
 
 .btn_tag:focus {
