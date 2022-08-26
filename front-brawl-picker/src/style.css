@@ -3,40 +3,21 @@
 @tailwind utilities;
 
 body{
-    @apply bg-body_bg
+    @apply bg-body_bg 
 }
 
 .header_brawl{
-    @apply flex items-center text-white h-20 px-7; 
-    /* display: flex;
-    align-items: center;
-    color: #FFFFFF;
-    height: 45px;
-    padding: 20px; */
+    @apply flex items-center text-white h-16 lg:h-20 px-7; 
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
 .header_title{
-    @apply font-normal text-3xl leading-6 ml-5 mr-auto text-white;
+    @apply font-normal text-2xl lg:text-3xl leading-6 ml-5 mr-auto text-white;
     font-family: 'Karla';
-    /* font-style: normal;
-    font-size: 30px;
-    line-height: 24px;
-    margin-left: 30px;
-
-    margin-right: auto;
-
-    color: white; */
 }
 
 .list_header{ 
-    @apply flex justify-center items-center font-normal text-xl  gap-0 md:gap-8;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: normal;
-    font-size: 22px;
-    gap: 40px;*/
+    @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-8 ;
     font-family: 'Karla';
     list-style-type: none;
     
@@ -56,60 +37,41 @@ body{
 }
 
 .MapTierList{
-    @apply invisible text-xs md:visible md:text-xl
+    @apply hidden lg:flex text-xl
 }
 
 .BrawlerTierList{
-    @apply invisible text-xs md:visible md:text-xl
+    @apply hidden lg:flex text-xl
 }
 
-/* .Profile{
-    margin-right: 100px;
-} */
+.Profile_link{
+    @apply hidden lg:flex text-xl
+} 
+
+.About_phone{
+    @apply flex lg:hidden
+}
 
 
 main {
-    @apply px-5 py-10
+    @apply px-5 py-10 
     
 }
 
 .input_there{
     @apply flex flex-col justify-center items-center self-center
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-    align-items: center; */
 }
 
 .input_tag{
     @apply w-64 h-16 indent-1 text-xl font-medium text-center rounded-2xl border-input_tag border-solid;
     font-family: "Karla", sans-serif;
     border-width: 3px;
-    /* border-radius: 20px;
-    text-indent: 10px;
-    width: 250px;
-    height: 50px;
-    font-size: 20px;
-    font-style: bold;
-
-    text-align: center; */
-
 }
 
 .btn_tag{
     @apply  w-24 mt-4 rounded-2xl border-0 text-white cursor-pointer h-10 text-base; 
     font-family: "Karla", sans-serif;
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
-    /* margin-top: 15px;
-    border-radius: 15px;
-    border: none;
-    color: #FFFFFF;
-    cursor: pointer;
-    height: 40px;
-    font-size: 16px;
-    text-indent: 7px;
-    width: 100px; */
 }
 
 .btn_tag:focus {
@@ -120,3 +82,65 @@ main {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
+.Profile{
+    @apply px-5 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start
+}
+
+.Profile_card{
+    @apply flex flex-col justify-center items-stretch bg-profile_card w-full phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
+}
+
+.Profile_card_name{
+    @apply text-lg flex flex-col justify-center items-center
+}
+
+.Profile_card_img{
+    @apply w-28 mx-auto
+}
+
+/* .Profile_card_stats{
+    
+} */
+
+.ul_Profile_card_stats{
+    @apply space-y-1 
+}
+
+.ul_Profile_card_stats > li{
+    @apply flex justify-between items-stretch  md:gap-5 
+}
+
+.span_Profile_card_stats{
+    @apply flex justify-center items-center gap-1.5
+}
+
+.footer_phone_brawl{
+    @apply fixed bottom-0 flex items-center text-white h-16 px-5 w-full; 
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+}
+
+.list_footer_phone{
+    @apply flex justify-around items-center font-normal text-base w-full;
+    font-family: 'Karla';
+    list-style-type: none;
+}
+
+.footer_phone_brawl li.active {
+    @apply text-black
+}
+
+.footer_phone_brawl li:hover {
+    @apply bg-indigo-500
+}
+
+.footer_phone_Profile{
+    
+}
+
+.footer_phone_MapTierList{
+    
+}
+
+.footer_phone_BrawlerTierList{
+    
+}

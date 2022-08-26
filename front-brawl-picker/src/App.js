@@ -6,6 +6,9 @@ import Header from "./components/Header";
 import Profile from "./components/Profile";
 import MapTierList from "./components/MapTierList";
 import BrawlTierList from "./components/BrawlTierList";
+import FooterPhone from "./components/FooterPhone";
+import About from "./components/About";
+const API_URL = 'http://127.0.0.1:8000/api/'
 
 function App () {
 
@@ -13,13 +16,11 @@ function App () {
         ent_tag: ''
     })
 
-    const [show_tag, setShow_tag] = React.useState(false)
+    //const [show_tag, setShow_tag] = React.useState(false)
 
-    const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || {
-        data: {
-            name: ""
-        }
-    })
+    // const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || {
+    //     data: ""
+    // })
 
     function Keep_tag (event) {
         const {name, value} = event.target
@@ -31,43 +32,23 @@ function App () {
         })
     }
 
-    const API_URL = 'http://127.0.0.1:8000/api/'
+    // async function sendToBack() {
+    //     await axios({
+    //         method: 'post',
+    //         url: API_URL,
+    //         data: tag,
+    //     })
+    //         //.then(res => console.log(res))
+    //         .then(res => setData(res))
+    //         .catch(err => console.error(err))
+    //     setShow_tag(prev => !prev)
+    // }
 
-    //Отпрака тега на backend
-    function sendToBack() {
-        axios({
-            method: 'post',
-            url: API_URL,
-            data: tag,
-        })
-            //.then(res => console.log(res))
-            .then(res => setData(res))
-            .catch(err => console.error(err))
-        setShow_tag(prev => !prev)
-    }
+    // React.useEffect ( () => {
+    //     localStorage.setItem("data_tag", JSON.stringify(data))
+    //     //localStorage.clear()
+    // }, [data])
 
-    React.useEffect ( () => {
-        localStorage.setItem("data_tag", JSON.stringify(data))
-        //localStorage.clear()
-    }, [data])
-    
-
-
-    //Сбор данных с сервера backend
-    React.useEffect( () => {
-        async function getFromBAck() {
-            await axios({
-                method: 'get',
-                url: API_URL
-            })
-                .then(res => setData(res))
-                .catch(err => console.error(err))
-        }
-        getFromBAck()
-        console.log(data.data[0])
-        //localStorage.setItem("data_tag", JSON.stringify(data))
-        //console.log("state_from_back:", data)
-    }, [])
 
     return(
         <div>
@@ -80,13 +61,11 @@ function App () {
                             name={"ent_tag"} 
                             value={tag.ent_tag}
                             handleChange={Keep_tag}
-                            handleClick={sendToBack}
-                            //data={data.data[0]}
                         />}
                 />
                 <Route 
-                    path="/Profile"
-                    element={<Profile data={data.data[0]} />}
+                    path="/Profile/:brawlId"
+                    element={<Profile />}
                 />
                 <Route 
                     path="/BrawlTierList"
@@ -96,7 +75,14 @@ function App () {
                     path="/MapTierList"
                     element={<MapTierList/>}
                 />
+                <Route
+                    path="/About"
+                    element={<About/>} 
+                />
             </Routes>
+            <div className="flex lg:hidden">
+                <FooterPhone/>
+            </div>
         </div>
     )
 }
