@@ -37,6 +37,8 @@ def index(request):
             'solo_wins': player.solo_victories,
             'duo_wins': player.duo_victories,
             'player_icon_id': player.icon,
+            'brawlers': player.brawlers[0],
+            'power_play_points': player.power_play_points,
             }]
 
     # Получение информации о последних 25 боях игрока по тэгу

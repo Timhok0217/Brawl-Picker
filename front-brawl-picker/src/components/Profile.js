@@ -8,8 +8,7 @@ function Profile () {
     const {brawlId} = useParams()
     //const [data, setData] = React.useState([])
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
-
-    // const [new_tag, setNew_tag] = React.useState([])
+    const [brawlers, setBrawlers] = React.useState([])
 
     useEffect(()=>{
         (async ()=>{
@@ -31,6 +30,12 @@ function Profile () {
         //localStorage.clear()
         console.log(JSON.parse(localStorage.getItem("data_tag")))
     }, [data])
+
+    useEffect(()=>{
+        Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
+        console.log("brawlers_obj", brawlers)
+    }, [data])
+    
 
     // useEffect(()=>{
     //     (async ()=>{
@@ -73,7 +78,12 @@ function Profile () {
                             <li><span>Duo Wins</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/gamemode/Duo-Showdown.png" className="w-4 h-4" alt="new"/> {data[0].duo_wins}</span></li>
                         </ul>
                     </div>
-                </div>} 
+                </div>}
+            {Boolean(data.length) &&
+                <div className="Brawlers_card">
+                    <h2>{brawlers[0].name}</h2>
+                </div>    
+            } 
         </div>
         
 
