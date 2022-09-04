@@ -37,7 +37,7 @@ def index(request):
             'solo_wins': player.solo_victories,
             'duo_wins': player.duo_victories,
             'player_icon_id': player.icon,
-            'brawlers': player.brawlers[0],
+            'brawlers': player.brawlers,
             'power_play_points': player.power_play_points,
             }]
 

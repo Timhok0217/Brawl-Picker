@@ -83,11 +83,15 @@ main {
 }
 
 .Profile{
-    @apply px-5 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start
+    @apply px-5 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start 
+}
+
+.Profile_block{
+    @apply flex flex-col justify-center items-center gap-12 lg:flex-row
 }
 
 .Profile_card{
-    @apply flex flex-col justify-center items-stretch bg-profile_card w-full phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
+    @apply mb-4 flex flex-col justify-center items-stretch bg-profile_card w-full phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
 }
 
 .Profile_card_name{
@@ -143,4 +147,32 @@ main {
 
 .footer_phone_BrawlerTierList{
     
+}
+
+.Brawlers_block{
+    @apply flex flex-col gap-10 lg:flex-row
+}
+
+.Brawler_card{
+    @apply flex flex-col justify-center items-stretch bg-profile_card w-full phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
+}
+
+.Brawler_card_name{
+    @apply text-lg flex flex-col justify-center items-center
+}
+
+.Brawler_card_img{
+    @apply w-28 mx-auto
+}
+
+/* .Profile_card_stats{
+    
+} */
+
+.ul_Brawler_card_stats{
+    @apply space-y-1 
+}
+
+.ul_Brawler_card_stats > li{
+    @apply flex justify-between items-stretch  md:gap-5 
 }
