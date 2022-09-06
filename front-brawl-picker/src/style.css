@@ -54,7 +54,7 @@ body{
 
 
 main {
-    @apply px-5 py-10 
+    @apply px-4 py-10 
     
 }
 
@@ -83,7 +83,7 @@ main {
 }
 
 .Profile{
-    @apply px-5 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start 
+    @apply px-4 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start 
 }
 
 .Profile_block{
@@ -149,12 +149,80 @@ main {
     
 }
 
+/* .Brawlers{
+    @apply flex flex-col items-center 
+} */
+
+/*Руинит флекс*/ 
 .Brawlers_block{
-    @apply flex flex-col gap-10 lg:flex-row
+    @apply flex items-center justify-center -ml-10
+    /* @apply flex flex-col gap-10 
+    lg:flex-row lg:overflow-hidden  */
+    /* lg:w-[calc(100%-10rem)]   */
+}
+
+.Brawlers_slider{
+    @apply flex flex-col gap-10 
+    lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl w-full 
+    lg:flex-row lg:overflow-hidden lg:overflow-x-scroll lg:whitespace-nowrap;
+    --items-per-screen: 2.15;
+    
+}
+
+
+@media(min-width:1100px){
+    .Brawlers_slider{
+        max-width: 710px;
+        --items-per-screen: 3.4;
+
+    } 
+}
+
+
+@media(min-width:1210px){
+    .Brawlers_slider{
+        max-width: 820px;
+        --items-per-screen: 3.9;
+    } 
+}
+
+@media(min-width:1330px){
+    .Brawlers_slider{
+        max-width: 940px;
+        --items-per-screen: 4.5;
+    } 
+}
+
+@media(min-width:1470px){
+    .Brawlers_slider{
+        max-width: 1100px;
+        --items-per-screen: 4.5;
+    } 
+}
+
+.handle{
+    @apply w-10 bg-input_tag z-10 cursor-pointer rounded-3xl h-10 
+}
+
+.handle_left{
+    @apply relative left-6 
+}
+
+.handle_right{
+    @apply relative right-6
+}
+
+.handle:hover{
+    @apply bg-emerald-500
 }
 
 .Brawler_card{
-    @apply flex flex-col justify-center items-stretch bg-profile_card w-full phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
+    @apply flex flex-col justify-center items-stretch 
+     bg-profile_card w-full py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
+      lg:w-60 ;
+      /* lg:items-center */
+      flex: 0 0 calc(100% / var(--items-per-screen))
+      /* lg:-translate-x-full    */
 }
 
 .Brawler_card_name{
@@ -164,10 +232,6 @@ main {
 .Brawler_card_img{
     @apply w-28 mx-auto
 }
-
-/* .Profile_card_stats{
-    
-} */
 
 .ul_Brawler_card_stats{
     @apply space-y-1 
