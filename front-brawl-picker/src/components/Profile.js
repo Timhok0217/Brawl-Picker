@@ -9,6 +9,17 @@ function Profile () {
     //const [data, setData] = React.useState([])
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
+    const [carousel, setCarousel] = React.useState(0)
+
+    const prev_carousel = () => {
+        const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
+        setCarousel(index) 
+    }
+
+    const next_carousel = () => {
+        const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
+        setCarousel(index) 
+    }
 
     useEffect(()=>{
         (async ()=>{
@@ -86,11 +97,11 @@ function Profile () {
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
                     <div className="Brawlers_block"> 
-                        <button className="handle handle_left"></button>
+                        <button className="handle handle_left" onClick={prev_carousel}></button>
                         <div className="Brawlers_slider">
                             {Boolean(brawlers.length) &&
                                 brawlers[0].map((item) =>
-                                    <div className="Brawler_card">
+                                    <div className="Brawler_card" style={{transform: `translateX(${-carousel * 100}%)`}}>
                                         <h2 className="Brawler_card_name">{item.name}</h2>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_card_img" alt="icon"/>
                                         <div className="Brawler_card_stats">
@@ -104,7 +115,7 @@ function Profile () {
                                     </div>)
                             }   
                         </div>                    
-                        <button className="handle handle_right"></button>
+                        <button className="handle handle_right" onClick={next_carousel}></button>
                     </div> 
                 </div>
             </div>

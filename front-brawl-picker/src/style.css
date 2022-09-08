@@ -83,7 +83,7 @@ main {
 }
 
 .Profile{
-    @apply px-4 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start 
+    @apply px-4 mx-8 mb-20 flex flex-col justify-center items-center lg:items-start 2xl:items-center
 }
 
 .Profile_block{
@@ -155,14 +155,14 @@ main {
 
 /*Руинит флекс*/ 
 .Brawlers_block{
-    @apply flex items-center justify-center -ml-10
+    @apply flex items-center justify-center -ml-10 
     /* @apply flex flex-col gap-10 
     lg:flex-row lg:overflow-hidden  */
     /* lg:w-[calc(100%-10rem)]   */
 }
 
 .Brawlers_slider{
-    @apply flex flex-col gap-10 
+    @apply flex flex-col gap-5 
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl w-full 
     lg:flex-row lg:overflow-hidden lg:overflow-x-scroll lg:whitespace-nowrap;
     --items-per-screen: 2.15;
@@ -199,6 +199,8 @@ main {
         --items-per-screen: 4.5;
     } 
 }
+
+
 
 .handle{
     @apply w-10 bg-input_tag z-10 cursor-pointer rounded-3xl h-10 
