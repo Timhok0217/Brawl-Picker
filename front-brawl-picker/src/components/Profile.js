@@ -11,15 +11,29 @@ function Profile () {
     const [brawlers, setBrawlers] = React.useState([])
     const [carousel, setCarousel] = React.useState(0)
 
+    const ref = React.useRef(null)
+
+    //let box = document.querySelector(".Brawlers_slider")
+
     const prev_carousel = () => {
-        const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
-        setCarousel(index) 
+        let width = ref.current.clientWidth
+        ref.current.scrollLeft = ref.current.scrollLeft - width
     }
 
     const next_carousel = () => {
-        const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
-        setCarousel(index) 
+        let width = ref.current.clientWidth
+        ref.current.scrollLeft = ref.current.scrollLeft + width 
     }
+
+    // const prev_carousel = () => {
+    //     const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
+    //     setCarousel(index) 
+    // }
+
+    // const next_carousel = () => {
+    //     const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
+    //     setCarousel(index) 
+    // }
 
     useEffect(()=>{
         (async ()=>{
@@ -97,11 +111,12 @@ function Profile () {
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
                     <div className="Brawlers_block"> 
-                        <button className="handle handle_left" onClick={prev_carousel}></button>
-                        <div className="Brawlers_slider">
+                        <button className="handle handle_left" onClick={prev_carousel}> </button>
+                        {/* style={{transform: `translateX(${(-carousel ) * 100}%)`}} */}
+                        <div className="Brawlers_slider"  ref={ref}>
                             {Boolean(brawlers.length) &&
                                 brawlers[0].map((item) =>
-                                    <div className="Brawler_card" style={{transform: `translateX(${-carousel * 100}%)`}}>
+                                    <div className="Brawler_card" >
                                         <h2 className="Brawler_card_name">{item.name}</h2>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_card_img" alt="icon"/>
                                         <div className="Brawler_card_stats">
@@ -115,13 +130,11 @@ function Profile () {
                                     </div>)
                             }   
                         </div>                    
-                        <button className="handle handle_right" onClick={next_carousel}></button>
+                    <button className="handle handle_right" onClick={next_carousel}></button>
                     </div> 
                 </div>
             </div>
         </div>
-        
-
     )
 }
 

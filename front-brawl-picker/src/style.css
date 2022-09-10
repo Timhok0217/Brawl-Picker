@@ -155,17 +155,18 @@ main {
 
 /*Руинит флекс*/ 
 .Brawlers_block{
-    @apply flex items-center justify-center -ml-10 
+    @apply flex items-center justify-center -ml-10 relative
     /* @apply flex flex-col gap-10 
     lg:flex-row lg:overflow-hidden  */
     /* lg:w-[calc(100%-10rem)]   */
+    lg:overflow-hidden
 }
 
 .Brawlers_slider{
-    @apply flex flex-col gap-5 
-    lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl w-full 
-    lg:flex-row lg:overflow-hidden lg:overflow-x-scroll lg:whitespace-nowrap;
-    --items-per-screen: 2.15;
+    @apply flex flex-col gap-5 scroll-smooth
+    lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl  
+    lg:flex-row lg:overflow-hidden lg:overflow-x-scroll ;
+    --items-per-screen: 2.9;
     
 }
 
@@ -173,7 +174,7 @@ main {
 @media(min-width:1100px){
     .Brawlers_slider{
         max-width: 710px;
-        --items-per-screen: 3.4;
+        --items-per-screen: 3.2;
 
     } 
 }
@@ -182,21 +183,21 @@ main {
 @media(min-width:1210px){
     .Brawlers_slider{
         max-width: 820px;
-        --items-per-screen: 3.9;
+        --items-per-screen: 3.6;
     } 
 }
 
 @media(min-width:1330px){
     .Brawlers_slider{
         max-width: 940px;
-        --items-per-screen: 4.5;
+        --items-per-screen: 3.9;
     } 
 }
 
 @media(min-width:1470px){
     .Brawlers_slider{
         max-width: 1100px;
-        --items-per-screen: 4.5;
+        --items-per-screen: 4.25;
     } 
 }
 
@@ -219,9 +220,9 @@ main {
 }
 
 .Brawler_card{
-    @apply flex flex-col justify-center items-stretch 
-     bg-profile_card w-full py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
-      lg:w-60 ;
+    @apply flex flex-col justify-center items-stretch max-w-xs lg:whitespace-nowrap
+     bg-profile_card w-52 py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
+      lg:w-52;
       /* lg:items-center */
       flex: 0 0 calc(100% / var(--items-per-screen))
       /* lg:-translate-x-full    */
