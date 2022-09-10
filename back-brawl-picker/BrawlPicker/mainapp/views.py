@@ -8,6 +8,14 @@ from rest_framework.response import Response
 from .serializers import YourSerializer
 from rest_framework import views
 
+from requests import get
+
+def ip(request):
+
+
+    IPAddr = get('https://api.ipify.org').text
+    return render(request, 'mainapp/ip.html', {'IPAddr':IPAddr})
+
 @api_view(['GET', 'POST'])
 def index(request):
     client = brawlstats.Client(config.BRAWL_API_KEY)
@@ -29,6 +37,8 @@ def index(request):
             'solo_wins': player.solo_victories,
             'duo_wins': player.duo_victories,
             'player_icon_id': player.icon,
+            'brawlers': player.brawlers,
+            'power_play_points': player.power_play_points,
             }]
 
     # Получение информации о последних 25 боях игрока по тэгу
@@ -51,4 +61,6 @@ def index(request):
     context = {'data': data, 'gemgrab_context': gemgrab_context}
     results = YourSerializer(data, many=True).data
     return Response(results)
+
+
     # return render(request, 'mainapp/index.html', context)
