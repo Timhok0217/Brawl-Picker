@@ -13,18 +13,23 @@ function Profile () {
 
     const ref = React.useRef(null)
 
-    //let box = document.querySelector(".Brawlers_slider")
+    //Можно использовать вместо useRef
+    //let box = document.querySelector(".Brawlers_slider") 
 
     const prev_carousel = () => {
         let width = ref.current.clientWidth
         ref.current.scrollLeft = ref.current.scrollLeft - width
+        console.log(ref.current.scrollLeft)
+        console.log("a", ref.current.scrollLeft - ref.current.clientWidth)
     }
 
     const next_carousel = () => {
         let width = ref.current.clientWidth
-        ref.current.scrollLeft = ref.current.scrollLeft + width 
+        ref.current.scrollLeft = ref.current.scrollLeft + width
+        console.log(ref.current.scrollLeft) 
     }
 
+    // Вариант с пролистыванием 1 карточки
     // const prev_carousel = () => {
     //     const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
     //     setCarousel(index) 
@@ -111,8 +116,8 @@ function Profile () {
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
                     <div className="Brawlers_block"> 
-                        <button className="handle handle_left" onClick={prev_carousel}> </button>
-                        {/* style={{transform: `translateX(${(-carousel ) * 100}%)`}} */}
+                        <button className="handle handle_left" onClick={prev_carousel}  > </button>
+                        {/* style={{transform: `translateX(${(-carousel ) * 100}%)`}}  */}
                         <div className="Brawlers_slider"  ref={ref}>
                             {Boolean(brawlers.length) &&
                                 brawlers[0].map((item) =>
