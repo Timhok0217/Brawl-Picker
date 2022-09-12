@@ -160,7 +160,8 @@ main {
 
 /*Руинит флекс*/ 
 .Brawlers_block{
-    @apply flex items-center justify-center -ml-10 relative
+    @apply flex items-center -ml-5 lg:-ml-10
+     relative 
     /* @apply flex flex-col gap-10 
     lg:flex-row lg:overflow-hidden  */
     /* lg:w-[calc(100%-10rem)]   */
@@ -172,6 +173,7 @@ main {
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl  
     lg:flex-row overflow-hidden  ;
     --items-per-screen: 2.9;
+    
 }
 
 @media(min-width:51px){
@@ -200,39 +202,31 @@ main {
 
 @media(min-width:480px){
     .Brawlers_slider{
-        max-width: 380px;
-        --items-per-screen: 1.8;
+        max-width: 340px;
+        --items-per-screen: 1;
 
     } 
 }
 
 @media(min-width:660px){
     .Brawlers_slider{
-        max-width: 560px;
-        --items-per-screen: 2.5;
+        max-width: 520px;
+        --items-per-screen: 2.1;
 
     } 
 }
 
-@media(min-width:820px){
+@media(min-width:880px){
     .Brawlers_slider{
-        max-width: 710px;
+        max-width: 720px;
         --items-per-screen: 3.2;
-
-    } 
-}
-
-@media(min-width:970px){
-    .Brawlers_slider{
-        max-width: 830px;
-        --items-per-screen: 3.7;
 
     } 
 }
 
 @media(min-width:1024px){
     .Brawlers_slider{
-        max-width: 600px;
+        max-width: 620px;
         --items-per-screen: 2.5;
 
     } 
@@ -240,28 +234,20 @@ main {
 
 @media(min-width:1100px){
     .Brawlers_slider{
-        max-width: 710px;
+        max-width: 720px;
         --items-per-screen: 3.2;
 
     } 
 }
 
-
-@media(min-width:1210px){
+@media(min-width:1280px){
     .Brawlers_slider{
-        max-width: 820px;
-        --items-per-screen: 3.6;
+        max-width: 880px;
+        --items-per-screen: 4.32;
     } 
 }
 
-@media(min-width:1330px){
-    .Brawlers_slider{
-        max-width: 940px;
-        --items-per-screen: 3.9;
-    } 
-}
-
-@media(min-width:1470px){
+@media(min-width:1500px){
     .Brawlers_slider{
         max-width: 1100px;
         --items-per-screen: 4.25;
@@ -305,4 +291,13 @@ main {
 
 .ul_Brawler_card_stats > li{
     @apply flex justify-between items-stretch  md:gap-5 
+}
+
+.slider-indicators{
+    @apply flex gap-6
+}
+
+.indicator{
+    flex: 0 0 1rem;
+    @apply h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer
 }

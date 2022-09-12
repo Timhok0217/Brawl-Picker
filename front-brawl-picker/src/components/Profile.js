@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-pascal-case */
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import Brawler_slider from "./Brawler_slider/Brawler_slider";
+//import Progress_bar from "./Brawler_slider/Progress_bar";
+//import Bralwer_Card from "./Brawler_slider/Brawler_Card";
 //import Card_icon from "https://cdn.brawlify.com/brawler/Bibi.png"
 const API_URL = 'http://127.0.0.1:8000/api/'
 function Profile () {
@@ -9,37 +13,7 @@ function Profile () {
     //const [data, setData] = React.useState([])
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
-    const [carousel, setCarousel] = React.useState(0)
-
-    const ref = React.useRef(null)
-
-    //Можно использовать вместо useRef
-    //let box = document.querySelector(".Brawlers_slider") 
-
-    const prev_carousel = () => {
-        let width = ref.current.clientWidth
-        ref.current.scrollLeft = ref.current.scrollLeft - width
-        console.log(ref.current.scrollLeft)
-        console.log("a", ref.current.scrollLeft - ref.current.clientWidth)
-    }
-
-    const next_carousel = () => {
-        let width = ref.current.clientWidth
-        ref.current.scrollLeft = ref.current.scrollLeft + width
-        console.log(ref.current.scrollLeft) 
-    }
-
-    // Вариант с пролистыванием 1 карточки
-    // const prev_carousel = () => {
-    //     const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
-    //     setCarousel(index) 
-    // }
-
-    // const next_carousel = () => {
-    //     const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
-    //     setCarousel(index) 
-    // }
-
+    
     useEffect(()=>{
         (async ()=>{
             await axios({
@@ -115,28 +89,7 @@ function Profile () {
                         <h1 className="text-xl font-medium my-2 mb-4">Brawlers</h1>
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
-                    <div className="Brawlers_block"> 
-                        <button className="handle handle_left" onClick={prev_carousel}  > </button>
-                        {/* style={{transform: `translateX(${(-carousel ) * 100}%)`}}  */}
-                        <div className="Brawlers_slider"  ref={ref}>
-                            {Boolean(brawlers.length) &&
-                                brawlers[0].map((item) =>
-                                    <div className="Brawler_card" >
-                                        <h2 className="Brawler_card_name">{item.name}</h2>
-                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_card_img" alt="icon"/>
-                                        <div className="Brawler_card_stats">
-                                            <ul className="ul_Brawler_card_stats">
-                                                <li><span>Power Level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {item.power}</span></li>
-                                                <li><span>Rank</span> <span>{item.rank}</span></li>
-                                                <li><span>Highest Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.highest_trophies}</span></li>
-                                                <li><span>Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.trophies}</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>)
-                            }   
-                        </div>                    
-                    <button className="handle handle_right" onClick={next_carousel}></button>
-                    </div> 
+                    <Brawler_slider brawlers={brawlers} />
                 </div>
             </div>
         </div>
