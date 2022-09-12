@@ -1,22 +1,21 @@
 import React from "react";
 import Bralwer_Card from "./Brawler_Card";
 
+
 function Brawler_slider ({
     brawlers, ...props
 }) {
     const [carousel, setCarousel] = React.useState(0)
+    const ref = React.useRef(null)
 
     //Можно использовать вместо useRef
     //let box = document.querySelector(".Brawlers_slider")
-    const ref = React.useRef(null)
 
-    
     // Вариант с пролистыванием 1 карточки
     // const prev_carousel = () => {
     //     const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
     //     setCarousel(index) 
     // }
-
     // const next_carousel = () => {
     //     const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
     //     setCarousel(index) 
@@ -25,23 +24,23 @@ function Brawler_slider ({
     const prev_carousel = () => {
         let width = ref.current.clientWidth
         ref.current.scrollLeft = ref.current.scrollLeft - width
-        console.log(ref.current.scrollLeft)
-        console.log("a", ref.current.scrollLeft - ref.current.clientWidth)
 
-        let items_per_screen=ref.current.style
-        // parseInt(ref.style.getPropertyValue("--items-per-screen"))
+        let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
         console.log(items_per_screen)
-        const index = carousel > 0 ? carousel - 1 : brawlers[0].length - 1
+        const index = carousel > 0 ? carousel - items_per_screen : brawlers[0].length - items_per_screen
         setCarousel(index)
+        const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
     }
 
     const next_carousel = () => {
         let width = ref.current.clientWidth
         ref.current.scrollLeft = ref.current.scrollLeft + width
-        console.log(ref.current.scrollLeft)
         
-        const index = carousel < brawlers[0].length - 1 ? carousel + 1 : 0
+        let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
+        console.log(items_per_screen)
+        const index = carousel < brawlers[0].length - items_per_screen ? carousel + items_per_screen : 0
         setCarousel(index) 
+        const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
     }
 
 

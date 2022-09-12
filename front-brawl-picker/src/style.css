@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --items-per-screen: 3;
+  }
+
 body{
     @apply bg-body_bg 
 }
@@ -169,10 +173,10 @@ main {
 }
 
 .Brawlers_slider{
+    --items-per-screen: 2.9;
     @apply flex flex-row gap-5 scroll-smooth p-2 
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl  
     lg:flex-row overflow-hidden  ;
-    --items-per-screen: 2.9;
     
 }
 
