@@ -1,14 +1,13 @@
-from django.shortcuts import render
-from . import config
 import brawlstats
-
-from rest_framework import status
+from django.shortcuts import render
+from requests import get
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import YourSerializer
-from rest_framework import views
 
-from requests import get
+
+from . import config
+from .serializers import YourSerializer
+
 
 def ip(request):
 
@@ -23,11 +22,13 @@ def index(request):
     # Получение информации о профиле игрока по тэгу
     # player = client.get_profile('9LVUJVVLL')
     if request.method == 'GET':
-        player = client.get_profile('8Y8L02V2Q')
+        player = client.get_profile('20GGYV0LY')
+        battle_log = client.get_battle_logs('20GGYV0LY')
 
     elif request.method == 'POST':
         print(request.data)
-        player = client.get_profile(request.data['ent_tag'])
+        player = client.get_player(request.data['ent_tag'])
+        battle_log = client.get_battle_logs(request.data['ent_tag'])
     data = [{'name': player.name,
             'tag': player.tag,
             'trophies': player.trophies,
@@ -39,11 +40,13 @@ def index(request):
             'player_icon_id': player.icon,
             'brawlers': player.brawlers,
             'power_play_points': player.power_play_points,
-            }]
+            'battle_logs': battle_log[:5],
+             }]
 
     # Получение информации о последних 25 боях игрока по тэгу
     battles = client.get_battle_logs('8Y8L02V2Q')
-
+    #battles = client.get_battle_logs('UL0GCC8')
+    #print(battles[0].battle.mode)
     gemgrab_counter = 0
     gemgrab_victory_counter = 0
 
