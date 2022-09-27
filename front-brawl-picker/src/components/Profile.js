@@ -3,6 +3,10 @@ import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import Brawler_slider from "./Brawler_slider/Brawler_slider";
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/thumbs"
+import {Swiper, SwiperSlide} from "swiper/react"
 //import Progress_bar from "./Brawler_slider/Progress_bar";
 //import Bralwer_Card from "./Brawler_slider/Brawler_Card";
 //import Card_icon from "https://cdn.brawlify.com/brawler/Bibi.png"
@@ -13,6 +17,7 @@ function Profile () {
     //const [data, setData] = React.useState([])
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
+    const [battle_logs, setBattle_logs] = React.useState([])
     
     useEffect(()=>{
         (async ()=>{
@@ -36,8 +41,13 @@ function Profile () {
     }, [data])
 
     useEffect(()=>{
+        const l = Boolean(data.length) && data[0].battle_logs.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z])"(?=[а-яёa-z])/ig, "$1'")
+        const res = JSON.parse(l)
+        //console.log("parse", res)
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
+        Boolean(data.length) ? setBattle_logs(res) : <></>
         console.log("brawlers_obj", brawlers)
+        console.log("battle_log", battle_logs)
     }, [data])
     
     

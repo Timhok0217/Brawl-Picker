@@ -5,6 +5,7 @@ import {BrowserRouter} from "react-router-dom"
 import App from "./App"
 
 import "./style.css"
+import "swiper/css/bundle";
 
 const container = document.getElementById('root');
 const root = createRoot(container);

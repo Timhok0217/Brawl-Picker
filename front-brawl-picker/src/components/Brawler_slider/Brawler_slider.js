@@ -7,6 +7,7 @@ function Brawler_slider ({
 }) {
     const [carousel, setCarousel] = React.useState(0)
     const ref = React.useRef(null)
+    const [arr, setArr] = React.useState([])
 
     //Можно использовать вместо useRef
     //let box = document.querySelector(".Brawlers_slider")
@@ -21,6 +22,15 @@ function Brawler_slider ({
     //     setCarousel(index) 
     // }
 
+    // React.useEffect(()=>{
+    //     let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
+    //     const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
+    //     for (let i = 0; i<progress_elements; i++){
+    //         setArr(prev => [...prev, i])
+    //     }
+    //     console.log(arr)
+    // }, [brawlers])
+
     const prev_carousel = () => {
         let width = ref.current.clientWidth
         ref.current.scrollLeft = ref.current.scrollLeft - width
@@ -30,6 +40,10 @@ function Brawler_slider ({
         const index = carousel > 0 ? carousel - items_per_screen : brawlers[0].length - items_per_screen
         setCarousel(index)
         const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
+        for (let i = 0; i<progress_elements; i++){
+            setArr(prev => [...prev, i])
+        }
+        console.log(arr)
     }
 
     const next_carousel = () => {
@@ -41,6 +55,10 @@ function Brawler_slider ({
         const index = carousel < brawlers[0].length - items_per_screen ? carousel + items_per_screen : 0
         setCarousel(index) 
         const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
+        for (let i = 0; i<progress_elements; i++){
+            setArr(prev => [...prev, i])
+        }
+        console.log(arr)
     }
 
 
@@ -58,12 +76,12 @@ function Brawler_slider ({
                 </div>                    
                 <button className="handle handle_right" onClick={next_carousel}></button>
             </div>
-            <div className="slider-indicators">
+            {/* <div className="slider-indicators">
                 {Boolean(brawlers.length) && brawlers[0].map((item, index) => (
                     <div className="indicator"></div>
                 ))}
                 
-            </div>
+            </div> */}
         </div>
         
     )

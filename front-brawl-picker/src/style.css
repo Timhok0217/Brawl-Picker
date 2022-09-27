@@ -297,11 +297,20 @@ main {
     @apply flex justify-between items-stretch  md:gap-5 
 }
 
+.Brawlers_slider_progbar{
+    @apply flex flex-col items-start gap-1  
+}
+
 .slider-indicators{
-    @apply flex gap-6
+    @apply flex items-center gap-1 
+    relative 
+   /* @apply flex flex-col gap-10 
+   lg:flex-row lg:overflow-hidden  */
+   /* lg:w-[calc(100%-10rem)]   */
+   lg:overflow-hidden
+    /* flex gap-4  */
 }
 
 .indicator{
-    flex: 0 0 1rem;
-    @apply h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer
+    @apply  h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer 
 }
