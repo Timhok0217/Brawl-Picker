@@ -22,28 +22,19 @@ function Brawler_slider ({
     //     setCarousel(index) 
     // }
 
-    // React.useEffect(()=>{
-    //     let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
-    //     const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
-    //     for (let i = 0; i<progress_elements; i++){
-    //         setArr(prev => [...prev, i])
-    //     }
-    //     console.log(arr)
-    // }, [brawlers])
-
     const prev_carousel = () => {
         let width = ref.current.clientWidth
         ref.current.scrollLeft = ref.current.scrollLeft - width
 
         let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
-        console.log(items_per_screen)
+        //console.log(items_per_screen)
         const index = carousel > 0 ? carousel - items_per_screen : brawlers[0].length - items_per_screen
         setCarousel(index)
-        const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
-        for (let i = 0; i<progress_elements; i++){
-            setArr(prev => [...prev, i])
-        }
-        console.log(arr)
+        //const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
+        // for (let i = 0; i<progress_elements; i++){
+        //     setArr(prev => [...prev, i])
+        // }
+        //console.log(arr)
     }
 
     const next_carousel = () => {
@@ -51,14 +42,14 @@ function Brawler_slider ({
         ref.current.scrollLeft = ref.current.scrollLeft + width
         
         let items_per_screen = Math.floor(getComputedStyle(ref.current).getPropertyValue("--items-per-screen"))
-        console.log(items_per_screen)
+        //console.log(items_per_screen)
         const index = carousel < brawlers[0].length - items_per_screen ? carousel + items_per_screen : 0
         setCarousel(index) 
-        const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
-        for (let i = 0; i<progress_elements; i++){
-            setArr(prev => [...prev, i])
-        }
-        console.log(arr)
+        // const progress_elements = Math.ceil(brawlers[0].length / items_per_screen)
+        // for (let i = 0; i<progress_elements; i++){
+        //     setArr(prev => [...prev, i])
+        // }
+        // console.log(arr)
     }
 
 

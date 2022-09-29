@@ -91,12 +91,12 @@ main {
 }
 
 .Profile_block{
-    @apply flex flex-col phone:items-center gap-12 lg:flex-row
+    @apply flex flex-col phone:items-center gap-12 lg:flex-row lg:items-start
     /* justify-center items-center */
 }
 
 .Profile_card{
-    @apply mb-4 flex flex-col items-stretch bg-profile_card  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center
+    @apply mb-4 flex flex-col items-stretch bg-profile_card  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center sticky top-8
 }
 
 .Profile_card_name{
@@ -314,3 +314,15 @@ main {
 .indicator{
     @apply  h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer 
 }
+
+
+
+.span_Battle_logs_header{
+    @apply flex
+}
+
+.Brawler_logs_stats{
+    @apply bg-heist
+}
+
+

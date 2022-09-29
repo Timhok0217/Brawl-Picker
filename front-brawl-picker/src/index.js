@@ -7,6 +7,8 @@ import App from "./App"
 import "./style.css"
 import "swiper/css/bundle";
 
+//import "./img"
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(

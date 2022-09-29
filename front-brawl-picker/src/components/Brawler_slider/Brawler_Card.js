@@ -11,7 +11,7 @@ function Bralwer_Card ({
             <div className="Brawler_card_stats">
                 <ul className="ul_Brawler_card_stats">
                     <li><span>Power Level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {item.power}</span></li>
-                    <li><span>Rank</span> <span>{item.rank}</span></li>
+                    <li><span>Rank</span> <span className="span_Profile_card_stats"> <img src="https://brawltime.ninja/_nuxt/img/powerpoint_optimized.d856133.png" className="w-4 h-4" alt="new"/>{item.rank}</span></li>
                     <li><span>Highest Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.highest_trophies}</span></li>
                     <li><span>Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.trophies}</span></li>
                 </ul>

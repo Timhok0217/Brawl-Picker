@@ -29,7 +29,14 @@ module.exports = {
       indigo: colors.indigo,
       yellow: colors.yellow,
     },
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({'brawlBall': "url('./src/img/brawl_ball.jpg')",
+      'gemGrab': "url('./src/img/smash_and_grab.jpg')",
+      'heist': "url('./src/img/heist.jpg')",
+      'showdown': "url('./src/img/showdown.jpg')",
+      'bounty': "url('./src/img/bounty.jpg')"
+       })
+    },
   },
   plugins: [],
 }

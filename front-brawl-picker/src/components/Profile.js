@@ -2,13 +2,12 @@
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import Brawler_slider from "./Brawler_slider/Brawler_slider";
+import Brawler_slider from "./Brawler_slider/Brawler_slider"; 
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/thumbs"
 import {Swiper, SwiperSlide} from "swiper/react"
 //import Progress_bar from "./Brawler_slider/Progress_bar";
-//import Bralwer_Card from "./Brawler_slider/Brawler_Card";
 //import Card_icon from "https://cdn.brawlify.com/brawler/Bibi.png"
 const API_URL = 'http://127.0.0.1:8000/api/'
 function Profile () {
@@ -100,6 +99,31 @@ function Profile () {
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
                     <Brawler_slider brawlers={brawlers} />
+                    {Boolean(data.length) && battle_logs.map((item, index) =>
+                    <div className="Battle_logs_Card" >
+                        <div className="Battle_logs_header" >
+                            <span className="span_Battle_logs_header">
+                                {item.battle.result}
+                                {item.battle.trophy_change ? (item.battle.result === "victory" ? <p>+</p>:<p>-</p>) : <></>}
+                                {item.battle.trophy_change}
+                                {item.battle.trophy_change ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
+                                {item.battle.type}
+                            </span>
+                            <div className="Battle_logs_header_name">
+                                <h2 className="Battle_logs_name">{item.battle.mode}</h2>
+                                <h3 className="Battle_logs_name">{item.event.map !== "None" ? item.event.map : <></>}</h3>
+                            </div>
+                            <img src="https://media.brawltime.ninja/modes/brawl-ball/icon.webp?size=160" className="Brawler_card_img" alt="icon"/>
+                        </div>
+                        <div className="Brawler_logs_stats">
+                            <ul className="ul_Brawler_card_stats">
+                                <li><span>Power Level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {item.power}</span></li>
+                                <li><span>Rank</span> <span>{item.rank}</span></li>
+                                <li><span>Highest Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.highest_trophies}</span></li>
+                                <li><span>Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.trophies}</span></li>
+                            </ul>
+                        </div>
+                    </div>)}
                 </div>
             </div>
         </div>
