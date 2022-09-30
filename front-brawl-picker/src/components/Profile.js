@@ -17,6 +17,7 @@ function Profile () {
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
     const [battle_logs, setBattle_logs] = React.useState([])
+    const [battle_logs_team, setBattle_logs_team] = React.useState([])
     
     useEffect(()=>{
         (async ()=>{
@@ -45,6 +46,8 @@ function Profile () {
         //console.log("parse", res)
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
         Boolean(data.length) ? setBattle_logs(res) : <></>
+        //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
+        console.log("team", battle_logs_team)
         console.log("brawlers_obj", brawlers)
         console.log("battle_log", battle_logs)
     }, [data])
@@ -109,18 +112,44 @@ function Profile () {
                                 {item.battle.trophy_change ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
                                 {item.battle.type}
                             </span>
-                            <div className="Battle_logs_header_name">
+                        </div>
+                        <div className="Battle_logs_body_name">
                                 <h2 className="Battle_logs_name">{item.battle.mode}</h2>
                                 <h3 className="Battle_logs_name">{item.event.map !== "None" ? item.event.map : <></>}</h3>
+                                <img src="https://media.brawltime.ninja/modes/brawl-ball/icon.webp?size=160" className="Brawler_card_img" alt="icon"/>
                             </div>
-                            <img src="https://media.brawltime.ninja/modes/brawl-ball/icon.webp?size=160" className="Brawler_card_img" alt="icon"/>
-                        </div>
                         <div className="Brawler_logs_stats">
-                            <ul className="ul_Brawler_card_stats">
-                                <li><span>Power Level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {item.power}</span></li>
-                                <li><span>Rank</span> <span>{item.rank}</span></li>
-                                <li><span>Highest Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.highest_trophies}</span></li>
-                                <li><span>Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> {item.trophies}</span></li>
+                            <ul className="ul_Brawler_logs_players">
+                                { item.battle.teams[0].map((item_logs, index) => 
+                                    <li className="li_Brawler_logs_players">
+                                        <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
+                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <div className="Brawler_logs_players_name">
+                                            {item_logs.name.length > 8 ?
+                                                item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 3 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                        `${item_logs.name.substring(0, 5)}...` :
+                                                        `${item_logs.name.substring(0, 6)}...`:
+                                                    `${item_logs.name.substring(0, 7)}...` :
+                                                `${item_logs.name.substring(0, 8)}` } 
+                                        </div>
+                                    </li>
+                                )}
+                                { item.battle.teams[1].map((item_logs, index) => 
+                                    <li className="li_Brawler_logs_players">
+                                        <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
+                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <div className="Brawler_logs_players_name">
+                                            {item_logs.name.length > 8 ?
+                                                item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 3 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                        `${item_logs.name.substring(0, 5)}...` :
+                                                        `${item_logs.name.substring(0, 6)}...`:
+                                                    `${item_logs.name.substring(0, 7)}...` :
+                                                `${item_logs.name.substring(0, 8)}` } 
+                                        </div>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     </div>)}

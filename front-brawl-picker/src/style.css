@@ -315,14 +315,45 @@ main {
     @apply  h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer 
 }
 
+.Battle_logs_Card{
+    @apply w-fit rounded-lg bg-profile_card
+}
 
+/* .Battle_logs_header{
+    @apply 
+} */
+
+.Battle_logs_body_name{
+    @apply bg-indigo-500
+}
 
 .span_Battle_logs_header{
     @apply flex
 }
 
 .Brawler_logs_stats{
-    @apply bg-heist
+    /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
+    background-image: url("./img/brawl_ball.jpg");
+    background-size: 100%;
+    @apply rounded-b-lg opacity-80 p-8
 }
 
+.ul_Brawler_logs_players{
+    @apply  opacity-80 flex gap-3 mx-auto 
+}
 
+.li_Brawler_logs_players{
+    @apply w-16 h-24 bg-profile_card p-1
+}
+
+.Brawler_logs_players{
+    @apply  flex items-center 
+}
+
+.Brawler_logs_player_img{
+    @apply mx-auto w-8
+}
+
+.Brawler_logs_players_name{
+    @apply text-sm
+}
