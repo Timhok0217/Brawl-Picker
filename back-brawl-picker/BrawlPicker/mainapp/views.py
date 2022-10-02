@@ -22,8 +22,8 @@ def index(request):
     # Получение информации о профиле игрока по тэгу
     # player = client.get_profile('9LVUJVVLL')
     if request.method == 'GET':
-        player = client.get_profile('20GGYV0LY')
-        battle_log = client.get_battle_logs('20GGYV0LY')
+        player = client.get_profile('9J2RLRYYY')
+        battle_log = client.get_battle_logs('9J2RLRYYY')
 
     elif request.method == 'POST':
         print(request.data)
@@ -40,7 +40,7 @@ def index(request):
             'player_icon_id': player.icon,
             'brawlers': player.brawlers,
             'power_play_points': player.power_play_points,
-            'battle_logs': battle_log[:5],
+            'battle_logs': battle_log[:10],
              }]
 
     # Получение информации о последних 25 боях игрока по тэгу

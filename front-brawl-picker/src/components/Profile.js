@@ -41,15 +41,16 @@ function Profile () {
     }, [data])
 
     useEffect(()=>{
-        const l = Boolean(data.length) && data[0].battle_logs.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z])"(?=[а-яёa-z])/ig, "$1'")
+        const l = Boolean(data.length) && data[0].battle_logs.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
         const res = JSON.parse(l)
-        //console.log("parse", res)
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
         Boolean(data.length) ? setBattle_logs(res) : <></>
         //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
-        console.log("team", battle_logs_team)
+        //console.log("team", battle_logs_team)
         console.log("brawlers_obj", brawlers)
         console.log("battle_log", battle_logs)
+        //console.log(l, res)
+        //console.log(l[6223],l[6224],l[6225], l[6226], l[6227],l[6228],l[3886],l[3887], l[3888],l[3889],l[3890],l[3891], l[3881],l[3881],l[3881],l[2825], l[2826],l[2819],l[2820])
     }, [data])
     
     
@@ -111,46 +112,58 @@ function Profile () {
                                 {item.battle.trophy_change}
                                 {item.battle.trophy_change ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
                                 {item.battle.type}
+                                {/* {item.battle_time} */}
                             </span>
                         </div>
                         <div className="Battle_logs_body_name">
-                                <h2 className="Battle_logs_name">{item.battle.mode}</h2>
-                                <h3 className="Battle_logs_name">{item.event.map !== "None" ? item.event.map : <></>}</h3>
-                                <img src="https://media.brawltime.ninja/modes/brawl-ball/icon.webp?size=160" className="Brawler_card_img" alt="icon"/>
+                            <img src="https://media.brawltime.ninja/modes/brawl-ball/icon.webp?size=160" className="Battle_logs_body_name_img" alt="icon"/>
+                            <div className="Battle_logs_name_block">
+                                <h2 className="Battle_logs_name_mode">{item.battle.mode}</h2>
+                                <h3 className="Battle_logs_name_map">{item.event.map !== "None" ? item.event.map : <></>}</h3>
                             </div>
+                        </div>
                         <div className="Brawler_logs_stats">
+                            <div className="img_Brawler_logs_stats"></div>
+{/* Не работает должным образом */}
+                            {item.battle.mode !== ("soloShowdown" || "duoShowdown") && 
                             <ul className="ul_Brawler_logs_players">
-                                { item.battle.teams[0].map((item_logs, index) => 
+                                {item.battle.teams[0].map((item_logs) => 
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
-                                            {item_logs.name.length > 8 ?
+                                            {/* {item_logs.name.length >= 7 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
                                                 item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 3 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 2 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                        item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ? `${item_logs.name.substring(0, 4)}...` :
                                                         `${item_logs.name.substring(0, 5)}...` :
                                                         `${item_logs.name.substring(0, 6)}...`:
                                                     `${item_logs.name.substring(0, 7)}...` :
-                                                `${item_logs.name.substring(0, 8)}` } 
+                                                    item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 && item_logs.name.length >=5 ? 
+                                                    `${item_logs.name.substring(0, 4)}...` : `${item_logs.name.substring(0, 8)}` }  */}
+                                            {item_logs.name} 
                                         </div>
                                     </li>
                                 )}
-                                { item.battle.teams[1].map((item_logs, index) => 
+                                {item.battle.teams[1].map((item_logs) => 
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
-                                            {item_logs.name.length > 8 ?
+                                            {/* {item_logs.name.length >= 7 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
                                                 item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 3 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 2 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
+                                                        item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ? `${item_logs.name.substring(0, 4)}...` :
                                                         `${item_logs.name.substring(0, 5)}...` :
                                                         `${item_logs.name.substring(0, 6)}...`:
                                                     `${item_logs.name.substring(0, 7)}...` :
-                                                `${item_logs.name.substring(0, 8)}` } 
+                                                    item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 && item_logs.name.length >=5 ?
+                                                    `${item_logs.name.substring(0, 4)}...` : `${item_logs.name.substring(0, 8)}` }  */}
+                                            {item_logs.name}
                                         </div>
                                     </li>
                                 )}
-                            </ul>
+                            </ul>}
                         </div>
                     </div>)}
                 </div>
