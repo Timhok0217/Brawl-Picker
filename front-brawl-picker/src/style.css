@@ -96,7 +96,7 @@ main {
 }
 
 .Profile_card{
-    @apply mb-4 flex flex-col items-stretch bg-profile_card  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center sticky top-8
+    @apply mb-4 flex flex-col items-stretch bg-profile_card  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center lg:sticky lg:top-8
 }
 
 .Profile_card_name{
@@ -240,7 +240,6 @@ main {
     .Brawlers_slider{
         max-width: 720px;
         --items-per-screen: 3.2;
-
     } 
 }
 
@@ -315,16 +314,34 @@ main {
     @apply  h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer 
 }
 
+.brawl_swiper_main_div{
+    @apply lg:ml-5 ml-6
+}
+
+.brawl_swiper_main{
+    @apply md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[360px]
+    lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg 
+    overflow-hidden  
+}
+
 .Battle_logs_Card{
     @apply w-fit rounded-lg bg-profile_card
 }
 
 .Battle_logs_header{
-    @apply p-1 px-5
+    @apply p-1 px-8 font-medium text-body_bg flex justify-between
 }
 
 .span_Battle_logs_header{
-    @apply flex gap-0
+    @apply flex gap-1 items-center
+}
+
+.span_Battle_logs_header_result{
+    @apply mr-3
+}
+
+.span_Battle_logs_header_trophy{
+    @apply flex
 }
 
 /* .Battle_logs_header{
@@ -355,9 +372,9 @@ main {
 
 .Brawler_logs_stats{
     /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
-    @apply rounded-b-lg px-5 py-6 opacity-100;
+    @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover;
     background-image: url("./img/brawl_ball.jpg");
-    background-size: 100%;
+    height: 100%;
     //background: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
     //filter: brightness(70%);  
@@ -372,7 +389,7 @@ main {
 
 
 .ul_Brawler_logs_players{
-    @apply  flex gap-3 mx-auto; 
+    @apply  grid small_ph:grid-cols-3 sm:grid-cols-6 gap-x-14 gap-y-3 mx-auto sm:gap-5; 
 }
 
 .li_Brawler_logs_players{
