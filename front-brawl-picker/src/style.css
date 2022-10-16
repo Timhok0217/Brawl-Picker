@@ -315,17 +315,17 @@ main {
 }
 
 .brawl_swiper_main_div{
-    @apply lg:ml-5 ml-6
+    @apply lg:ml-5  phone:mx-auto
 }
 
 .brawl_swiper_main{
-    @apply md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[360px]
+    @apply md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg 
     overflow-hidden  
 }
 
 .Battle_logs_Card{
-    @apply w-fit rounded-lg bg-profile_card
+    @apply w-auto rounded-lg bg-profile_card h-auto
 }
 
 .Battle_logs_header{
@@ -374,9 +374,10 @@ main {
     /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
     @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover;
     background-image: url("./img/brawl_ball.jpg");
-    height: 100%;
+    height: auto;
     //background: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
+    
     //filter: brightness(70%);  
 }
 /* .img_Brawler_logs_stats{
@@ -389,7 +390,7 @@ main {
 
 
 .ul_Brawler_logs_players{
-    @apply  grid small_ph:grid-cols-3 sm:grid-cols-6 gap-x-14 gap-y-3 mx-auto sm:gap-5; 
+    @apply  grid small_ph:grid-cols-3 sm:grid-cols-6 phone:gap-x-14 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
 }
 
 .li_Brawler_logs_players{
@@ -407,4 +408,20 @@ main {
 .Brawler_logs_players_name{
     @apply text-xs overflow-hidden
      
+}
+
+.ul_Brawler_logs_players_shd{
+    @apply  grid md_ph:grid-cols-5 small_ph:grid-cols-3 md:gap-x-14 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
+}
+
+.li_Brawler_logs_players_shd{
+    @apply w-16 h-[74px] bg-profile_card px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden
+}
+
+.Brawler_logs_players_shd{
+    @apply  flex items-center text-sm font-medium gap-1
+}
+
+.Brawler_logs_players_name_shd{
+    @apply text-xs overflow-hidden
 }

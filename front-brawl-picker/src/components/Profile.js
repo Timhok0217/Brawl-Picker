@@ -89,8 +89,8 @@ function Profile () {
                 <div className="Battle_logs_Card" >
                         <div className="Battle_logs_header" >
                             <span className="span_Battle_logs_header">
-                                <span className="span_Battle_logs_header_result" >{item.battle.result}</span>
-                                <span className="span_Battle_logs_header_trophy" >{item.battle.trophy_change ? (item.battle.result === "victory" ? <p>+</p> : Math.sign(item.battle.trophy_change) !== -1 ? <p>-</p> : <></>) : <></>}
+                                <span className="span_Battle_logs_header_result" >{item.battle.result} {item.battle.rank ? <span>Rank {item.battle.rank}</span>:<></>}</span>
+                                <span className="span_Battle_logs_header_trophy" >{item.battle.trophy_change ? (item.battle.result === "victory" || Math.sign(item.battle.trophy_change)==1 ? <p>+</p> : Math.sign(item.battle.trophy_change) !== -1 ? <p>-</p> : <></>) : <></>}
                                 {item.battle.trophy_change}</span>
                                 {item.battle.trophy_change ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
                                 {/* {item.battle_time} */}
@@ -116,15 +116,6 @@ function Profile () {
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
-                                            {/* {item_logs.name.length >= 7 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 2 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                        item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ? `${item_logs.name.substring(0, 4)}...` :
-                                                        `${item_logs.name.substring(0, 5)}...` :
-                                                        `${item_logs.name.substring(0, 6)}...`:
-                                                    `${item_logs.name.substring(0, 7)}...` :
-                                                    item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 && item_logs.name.length >=5 ? 
-                                                    `${item_logs.name.substring(0, 4)}...` : `${item_logs.name.substring(0, 8)}` }  */}
                                             {item_logs.name} 
                                         </div>
                                     </li>
@@ -134,16 +125,19 @@ function Profile () {
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
-                                            {/* {item_logs.name.length >= 7 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 1 || item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                    item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g) !== null && item_logs.name.substring(0, 8).match(/[A-Z А-Я 0-9]/g).length > 2 ||  item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ?
-                                                        item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 ? `${item_logs.name.substring(0, 4)}...` :
-                                                        `${item_logs.name.substring(0, 5)}...` :
-                                                        `${item_logs.name.substring(0, 6)}...`:
-                                                    `${item_logs.name.substring(0, 7)}...` :
-                                                    item_logs.name.substring(0, 8).match(/\P{Extended_Pictographic}/u).index > 0 && item_logs.name.length >=5 ?
-                                                    `${item_logs.name.substring(0, 4)}...` : `${item_logs.name.substring(0, 8)}` }  */}
                                             {item_logs.name}
+                                        </div>
+                                    </li>
+                                )}
+                            </ul>}
+                            {item.battle.mode == ("soloShowdown" || "duoShowdown") && 
+                            <ul className="ul_Brawler_logs_players_shd">
+                                {item.battle.players.map((item_logs, index) => 
+                                    <li className="li_Brawler_logs_players_shd">
+                                        <div className="Brawler_logs_players_shd"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
+                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <div className="Brawler_logs_players_name_shd">
+                                            {item_logs.name} 
                                         </div>
                                     </li>
                                 )}
@@ -196,6 +190,9 @@ function Profile () {
                             grabCursor={true}
                             navigation={true}
                             breakpoints={{
+                                280:{
+                                    slidesPerView:1,
+                                },
                                 480:{
                                     slidesPerView: 1,
                                     spaceBetween: 20
