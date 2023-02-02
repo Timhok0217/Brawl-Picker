@@ -108,7 +108,7 @@ function Profile () {
                         </div>
                         <div className="Brawler_logs_stats">
                             <div className="img_Brawler_logs_stats"></div>
-{/* Не работает должным образом */}
+
                             {item.battle.mode !== ("soloShowdown" || "duoShowdown") && 
                             <ul className="ul_Brawler_logs_players">
                                 {item.battle.teams[0].map((item_logs) => 

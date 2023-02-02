@@ -325,7 +325,7 @@ main {
 }
 
 .Battle_logs_Card{
-    @apply w-auto rounded-lg bg-profile_card h-auto
+    @apply w-auto rounded-lg bg-profile_card h-auto 
 }
 
 .Battle_logs_header{
@@ -411,7 +411,7 @@ main {
 }
 
 .ul_Brawler_logs_players_shd{
-    @apply  grid md_ph:grid-cols-5 small_ph:grid-cols-3 md:gap-x-14 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
+    @apply  grid md_ph:grid-cols-5 small_ph:grid-cols-3 md:gap-x-10 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
 }
 
 .li_Brawler_logs_players_shd{
