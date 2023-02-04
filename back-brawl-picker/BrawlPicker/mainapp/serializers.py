@@ -16,6 +16,7 @@ class YourSerializer(serializers.Serializer):
    brawlers = serializers.CharField()
    power_play_points = serializers.CharField()
    battle_logs = serializers.CharField()
+   club_info = serializers.CharField()
 # data = 231
 # serializer = StudentSerializer(data, context={'request': request}, many=True)
 # return Response(serializer.data)

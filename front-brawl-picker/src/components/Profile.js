@@ -23,7 +23,7 @@ function Profile () {
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
     const [battle_logs, setBattle_logs] = React.useState([])
-    const [battle_logs_team, setBattle_logs_team] = React.useState([])
+    const [clubInfo, setClubInfo] = React.useState([])
     
     useEffect(()=>{
         (async ()=>{
@@ -51,12 +51,14 @@ function Profile () {
         const res = JSON.parse(l)
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
         Boolean(data.length) ? setBattle_logs(res) : <></>
+        Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
         //console.log("team", battle_logs_team)
         console.log("brawlers_obj", brawlers)
         console.log("battle_log", battle_logs)
+        console.log("clubInfo", clubInfo)
         //console.log(l, res)
-        //console.log(l[6223],l[6224],l[6225], l[6226], l[6227],l[6228],l[3886],l[3887], l[3888],l[3889],l[3890],l[3891], l[3881],l[3881],l[3881],l[2825], l[2826],l[2819],l[2820])
+        
     }, [data])
     
     
@@ -147,10 +149,14 @@ function Profile () {
             </SwiperSlide>
         ))
 
+    // const slideMode = []
+    // Boolean(data.length) && 
+
 
     return(
         <div className="Profile">
             <h1 className="text-2xl font-medium my-4 text-center mb-8">Hello, Brawler {Boolean(data.length) && data[0].name}!</h1>
+            <div className="my-2"></div>
             <div className="Profile_block">
                 {Boolean(data.length) && 
                     <div className="Profile_card">
@@ -175,6 +181,7 @@ function Profile () {
                         <h1 className="text-lg font-normal my-2 mb-4">Important info about your all Brawlers!</h1> 
                     </div>
                     <Brawler_slider brawlers={brawlers} />
+                    <div className="my-6"></div>
 
                     <div className="info_brawlers">
                         <h1 className="text-xl font-medium my-2 mb-4">Battle Log</h1>

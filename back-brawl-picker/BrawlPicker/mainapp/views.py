@@ -24,13 +24,16 @@ def index(request):
     if request.method == 'GET':
         player = client.get_profile('9J2RLRYYY')
         battle_log = client.get_battle_logs('9J2RLRYYY')
+        club = client.get_club(player.club.tag)
 
     elif request.method == 'POST':
         print(request.data)
         player = client.get_player(request.data['ent_tag'])
         battle_log = client.get_battle_logs(request.data['ent_tag'])
+        club = client.get_club(player.club.tag)
     data = [{'name': player.name,
             'tag': player.tag,
+             "club_tag": player.club.tag,
             'trophies': player.trophies,
             'highest_trophies': player.highest_trophies,
             'exp_level': player.exp_level,
@@ -41,6 +44,13 @@ def index(request):
             'brawlers': player.brawlers,
             'power_play_points': player.power_play_points,
             'battle_logs': battle_log[:10],
+             "club_info": [club.tag,
+                           club.name,
+                           club.description,
+                           club.type,
+                           club.trophies,
+                           club.required_trophies,
+                           club.members],
              }]
 
     # Получение информации о последних 25 боях игрока по тэгу

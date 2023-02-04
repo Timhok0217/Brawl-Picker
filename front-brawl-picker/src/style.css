@@ -112,15 +112,15 @@ main {
 } */
 
 .ul_Profile_card_stats{
-    @apply space-y-1 
+    @apply space-y-1 my-4
 }
 
 .ul_Profile_card_stats > li{
     @apply flex justify-between items-stretch  md:gap-5 
 }
 
-.span_Profile_card_stats{
-    @apply flex justify-center items-center gap-1.5
+.span_Profile_card_stats{   
+    @apply flex justify-center items-center gap-1.5 my-0.5
 }
 
 .footer_phone_brawl{
