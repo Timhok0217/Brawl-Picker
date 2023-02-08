@@ -58,16 +58,16 @@ body{
 
 
 main {
-    @apply px-4 py-10 
+    @apply px-20 py-10 
     
 }
 
 .input_there{
-    @apply flex flex-col justify-center items-center self-center
+    @apply flex flex-col justify-center items-center self-center 
 }
 
 .input_tag{
-    @apply w-64 h-16 indent-1 text-xl font-medium text-center rounded-2xl border-input_tag border-solid;
+    @apply w-64 h-16 indent-1 text-xl font-medium text-center rounded-2xl border-input_tag border-solid my-2;
     font-family: "Karla", sans-serif;
     border-width: 3px;
 }
@@ -425,3 +425,41 @@ main {
 .Brawler_logs_players_name_shd{
     @apply text-xs overflow-hidden
 }
+
+
+
+.rank_swiper_main_div{
+    @apply 2xl:max-w-screen-2xl md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
+    lg:max-w-screen-lg xl:max-w-screen-xl p-6
+     phone:mx-auto my-16 rounded-2xl border-input_tag border-solid;
+    border-width: 3px;
+}
+
+.rank_swiper_main{
+    @apply   md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
+    lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl m-6
+    overflow-hidden 
+}
+
+.Card_rank{
+    @apply rounded-lg w-auto h-auto bg-profile_card p-3 
+}
+
+.Card_rank_header{
+    @apply text-base text-body_bg font-medium flex justify-between items-center
+}
+
+.Card_rank_body{
+    @apply text-body_bg font-medium flex justify-between items-center
+}
+
+/* .ll{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+
+
+
+

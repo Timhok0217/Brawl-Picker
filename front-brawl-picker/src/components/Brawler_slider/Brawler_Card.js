@@ -7,7 +7,7 @@ function Bralwer_Card ({
     return(
         <div className="Brawler_card" >
             <h2 className="Brawler_card_name">{item.name}</h2>
-            <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_card_img" alt="icon"/>
+            <img src={`https://media.brawltime.ninja/brawlers/${item.name.toLowerCase().includes(" ") ? item.name.toLowerCase().includes(".") ? item.name.toLowerCase().slice(0, item.name.toLowerCase().indexOf("."))+"__"+item.name.toLowerCase().slice(item.name.toLowerCase().indexOf(" ")+1)  : item.name.toLowerCase().slice(0, item.name.toLowerCase().indexOf(" "))+"_"+item.name.toLowerCase().slice(item.name.toLowerCase().indexOf(" ")+1)  : item.name.toLowerCase()}/avatar.webp`} className="Brawler_card_img" alt="icon"/>
             <div className="Brawler_card_stats">
                 <ul className="ul_Brawler_card_stats">
                     <li><span>Power Level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {item.power}</span></li>

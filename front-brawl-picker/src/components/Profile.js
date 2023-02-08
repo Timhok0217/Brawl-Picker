@@ -116,7 +116,7 @@ function Profile () {
                                 {item.battle.teams[0].map((item_logs) => 
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
-                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
                                             {item_logs.name} 
                                         </div>
@@ -125,9 +125,9 @@ function Profile () {
                                 {item.battle.teams[1].map((item_logs) => 
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
-                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name">
-                                            {item_logs.name}
+                                            {item_logs.name} 
                                         </div>
                                     </li>
                                 )}
@@ -137,7 +137,7 @@ function Profile () {
                                 {item.battle.players.map((item_logs, index) => 
                                     <li className="li_Brawler_logs_players_shd">
                                         <div className="Brawler_logs_players_shd"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
-                                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Brawler_logs_player_img" alt="icon"/>
+                                        <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
                                         <div className="Brawler_logs_players_name_shd">
                                             {item_logs.name} 
                                         </div>
@@ -149,7 +149,8 @@ function Profile () {
             </SwiperSlide>
         ))
 
-    // const slideMode = []
+    // const slideMode = [] <img src={`https://media.brawltime.ninja/brawlers/${item.brawler.name.toLowerCase().includes(" ") ? item.brawler.name.toLowerCase().includes(".") ? item.brawler.name.toLowerCase().slice(0, item.brawler.name.toLowerCase().indexOf("."))+"__"+item.brawler.name.toLowerCase().slice(item.brawler.name.toLowerCase().indexOf(" ")+1)  : item.brawler.name.toLowerCase().slice(0, item.brawler.name.toLowerCase().indexOf(" "))+"_"+item.brawler.name.toLowerCase().slice(item.brawler.name.toLowerCase().indexOf(" ")+1)  : item.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
+                                        
     // Boolean(data.length) && 
 
 
@@ -161,7 +162,7 @@ function Profile () {
                 {Boolean(data.length) && 
                     <div className="Profile_card">
                         <h2 className="Profile_card_name"> {data[0].name} </h2>
-                        <img src="https://cdn.brawlify.com/brawler/Bibi.png" className="Profile_card_img" alt="icon"/>
+                        <img src={`https://media.brawltime.ninja/avatars/${data[0].player_icon_id.slice(7, data[0].player_icon_id.length-1)}.webp`} className="Profile_card_img" alt="icon"/> 
                         <div className="Profile_card_stats">
                             <ul className="ul_Profile_card_stats">
                                 <li><span>Name</span> <span>{data[0].name}</span></li>
