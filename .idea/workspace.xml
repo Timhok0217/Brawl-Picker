@@ -4,7 +4,10 @@
     <list default="true" id="163fa7f3-59dc-4410-aab4-4484f4dc9ca6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-brawl-picker/BrawlPicker/mainapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-brawl-picker/src/components/Brawler_slider/Brawler_Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-brawl-picker/src/components/Brawler_slider/Brawler_Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-brawl-picker/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-brawl-picker/src/components/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-brawl-picker/src/components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-brawl-picker/src/components/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-brawl-picker/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-brawl-picker/src/style.css" afterDir="false" />
     </list>

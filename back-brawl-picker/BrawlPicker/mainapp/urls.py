@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     re_path(r'^api/$', views.index, name='index'),
+    re_path(r'apiHome/$', views.apiHome, name="apiHome"),
     path('ip', views.ip, name='ip')
     # re_path('', views.index, name='index'),
 ]
