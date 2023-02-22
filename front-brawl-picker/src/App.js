@@ -4,10 +4,12 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
-import MapTierList from "./components/MapTierList";
+import LeaderBoard from "./components/LeaderBoard";
 import BrawlTierList from "./components/BrawlTierList";
 import FooterPhone from "./components/FooterPhone";
 import About from "./components/About";
+import NotFound from "./components/NotFound";
+
 const API_URL = 'http://127.0.0.1:8000/api/'
 
 function App () {
@@ -72,12 +74,16 @@ function App () {
                     element={<BrawlTierList/>}
                 />
                 <Route 
-                    path="/MapTierList"
-                    element={<MapTierList/>}
+                    path="/LeaderBoard"
+                    element={<LeaderBoard/>}
                 />
                 <Route
                     path="/About"
                     element={<About/>} 
+                />
+                <Route 
+                    path="*"
+                    element={<NotFound/>} 
                 />
             </Routes>
             <div className="flex lg:hidden">
