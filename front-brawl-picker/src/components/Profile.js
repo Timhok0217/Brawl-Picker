@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Brawler_slider from "./Brawler_slider/Brawler_slider"; 
 import "swiper/css"
@@ -47,10 +49,15 @@ function Profile () {
     }, [data])
 
     useEffect(()=>{
+        //const parsedData = Boolean(data.length)&&JSON.parse(data[0].battle_logs.replace(/Box\(/g, '').replace(/\)/g, '').replace(/(?<!\w)'|'(?!\w)|(?<=[#\s])'/g, '"').replace(/None/g, '"None"'))
+        //console.log("parse_data", parsedData)
         const l = Boolean(data.length) && data[0].battle_logs.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
         const res = JSON.parse(l)
+        // Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
+        // Boolean(data.length) ? setBattle_logs(parsedData) : <></>
+        // Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
-        Boolean(data.length) ? setBattle_logs(res) : <></>
+        Boolean(data.length) && typeof(res)==undefined ? setBattle_logs(res) :
         Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
         //console.log("team", battle_logs_team)
@@ -60,6 +67,10 @@ function Profile () {
         //console.log(l, res)
         
     }, [data])
+
+    // useEffect (() =>{
+    //     battle_logs && localStorage.setItem("data_tag", [])
+    // }, [])
     
     
     // useEffect(()=>{
@@ -114,6 +125,8 @@ function Profile () {
                             {item.battle.mode !== ("soloShowdown" || "duoShowdown") && 
                             <ul className="ul_Brawler_logs_players">
                                 {item.battle.teams[0].map((item_logs) => 
+                                <Link to={`/Profile/${item_logs.tag.slice(1)}`} >
+                                {/* <div className="Card_rank" onClick={handleChange}> */}
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
@@ -121,8 +134,10 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                </Link>
                                 )}
-                                {item.battle.teams[1].map((item_logs) => 
+                                {item.battle.teams[1].map((item_logs) =>
+                                <Link to={`/Profile/${item_logs.tag.slice(1)}`} > 
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
@@ -130,11 +145,13 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                </Link>
                                 )}
                             </ul>}
                             {item.battle.mode == ("soloShowdown" || "duoShowdown") && 
                             <ul className="ul_Brawler_logs_players_shd">
                                 {item.battle.players.map((item_logs, index) => 
+                                <Link to={`/Profile/${item_logs.tag.slice(1)}`} >
                                     <li className="li_Brawler_logs_players_shd">
                                         <div className="Brawler_logs_players_shd"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
@@ -142,6 +159,7 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                </Link>
                                 )}
                             </ul>}
                         </div>

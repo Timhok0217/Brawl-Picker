@@ -6,7 +6,7 @@ function FooterPhone () {
         <footer className="footer_phone_brawl">
             <ul className="list_footer_phone">
                 <CustomLink to="/" className="footer_phone_Profile"> Profile </CustomLink>
-                <CustomLink to="/MapTierList" className="footer_phone_MapTierList"> Maps </CustomLink>
+                <CustomLink to="/LeaderBoard" className="footer_phone_LeaderBoard"> Leaders </CustomLink>
                 <CustomLink to="/BrawlTierList" className="footer_phone_BrawlerTierList"> Brawlers </CustomLink>
             </ul>
         </footer>

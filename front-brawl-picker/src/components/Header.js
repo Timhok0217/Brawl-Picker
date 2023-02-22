@@ -7,7 +7,7 @@ import {Link, useResolvedPath, useMatch} from "react-router-dom"
             {/* <img src={Troll_face} alt="logo" className="logo_troll"/> */}
             <Link to="/" className="header_title"> Brawl Picker</Link>
             <ul className="list_header">
-                <CustomLink to="/MapTierList" className="MapTierList"> MapTierList </CustomLink>
+                <CustomLink to="/LeaderBoard" className="LeaderBoard"> LeaderBoard </CustomLink>
                 <CustomLink to="/BrawlTierList" className="BrawlerTierList"> BrawlTierList </CustomLink>
                 <CustomLink to="/" className="Profile_link"> Profile </CustomLink>
                 <CustomLink to="/About" className="About_phone">

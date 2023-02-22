@@ -16,7 +16,7 @@ body{
 }
 
 .header_title{
-    @apply font-normal text-2xl lg:text-3xl leading-6 ml-5 mr-auto text-white;
+    @apply font-semibold text-2xl lg:text-3xl leading-6 ml-5 mr-auto text-white;
     font-family: 'Karla';
 }
 
@@ -40,7 +40,7 @@ body{
     @apply bg-indigo-500
 }
 
-.MapTierList{
+.LeaderBoard{
     @apply hidden lg:flex text-xl
 }
 
@@ -58,7 +58,7 @@ body{
 
 
 main {
-    @apply px-20 py-10 
+    @apply  px-4 py-10 phone:px-5 sm:px-8 md:px-10 lg:px-14
     
 }
 
@@ -67,13 +67,13 @@ main {
 }
 
 .input_tag{
-    @apply w-64 h-16 indent-1 text-xl font-medium text-center rounded-2xl border-input_tag border-solid my-2;
+    @apply w-64 h-20 indent-1 text-xl font-medium text-center rounded-3xl border-input_tag border-solid my-2;
     font-family: "Karla", sans-serif;
-    border-width: 3px;
+    border-width: 4px;
 }
 
 .btn_tag{
-    @apply  w-24 mt-4 rounded-2xl border-0 text-white cursor-pointer h-10 text-base; 
+    @apply  w-28 m-4 rounded-2xl border-0 text-white cursor-pointer h-10 text-lg hover:scale-105; 
     font-family: "Karla", sans-serif;
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
@@ -146,7 +146,7 @@ main {
     
 }
 
-.footer_phone_MapTierList{
+.footer_phone_LeaderBoard{
     
 }
 
@@ -428,29 +428,74 @@ main {
 
 
 
+
+/* .mainHome{
+    @apply flex-col justify-center items-center
+} */
+
+
 .rank_swiper_main_div{
-    @apply 2xl:max-w-screen-2xl md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
-    lg:max-w-screen-lg xl:max-w-screen-xl p-6
-     phone:mx-auto my-16 rounded-2xl border-input_tag border-solid;
-    border-width: 3px;
+    @apply  md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
+    lg:max-w-screen-md xl:max-w-screen-lg  2xl:max-w-screen-xl
+    flex flex-col
+     mx-auto my-16 rounded-2xl border-input_tag border-solid; 
+
+    //border-width: 3px; 2xl:max-w-screen-2xl
+}
+
+
+.rank_swiper_and_btn {
+    @apply flex-col items-center;
+    display: flex;
 }
 
 .rank_swiper_main{
-    @apply   md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
-    lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl m-6
-    overflow-hidden 
+    @apply   md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
+    lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl m-6 
+     overflow-hidden p-10;
+    
 }
+
+.btnToLeaders{
+    @apply w-28 m-2 rounded-2xl border-0 text-white cursor-pointer h-11 text-sm hover:scale-105; 
+    font-family: "Karla", sans-serif;
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+}
+
+.btnToLeaders:focus {
+    outline: none;
+}
+
+.btnToLeaders:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
 
 .Card_rank{
-    @apply rounded-lg w-auto h-auto bg-profile_card p-3 
+    @apply rounded-lg w-auto h-auto bg-profile_card p-4 
 }
 
+
+
 .Card_rank_header{
-    @apply text-base text-body_bg font-medium flex justify-between items-center
+    @apply text-base text-body_bg font-medium flex justify-between items-center mb-4 
 }
 
 .Card_rank_body{
     @apply text-body_bg font-medium flex justify-between items-center
+}
+
+.swiper-button-next::after{
+    font-size: 30px !important;
+    margin-left: 30px !important;
+    font-weight: 700 !important;
+
+}
+
+.swiper-button-prev:after{
+    font-size: 30px !important;
+    margin-right: 30px !important;
+    font-weight: 700 !important;
 }
 
 /* .ll{

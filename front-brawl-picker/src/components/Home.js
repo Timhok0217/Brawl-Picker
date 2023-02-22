@@ -5,10 +5,10 @@ import axios from "axios";
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-
 import "swiper/css/thumbs"
+
 import {Swiper, SwiperSlide} from "swiper/react"
-import SwiperCore from "swiper"
+import SwiperCore, { Thumbs } from "swiper"
 import { Pagination, Navigation } from "swiper"
 
 const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
@@ -31,7 +31,9 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
     // }
 
     const [dataHome, setDataHome] = React.useState([])
-    const [dataRank, setDataRank] = React.useState([])
+    const [dataRankPlayers, setDataRankPlayers] = React.useState([])
+    //const [dataRankBrawlers, setDataRankBrawlers] = React.useState([])
+
     useEffect(()=>{
         (async ()=>{
             await axios({
@@ -54,32 +56,38 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
     }, [dataHome])
 
     useEffect(()=>{
-        const l = Boolean(dataHome.length) && dataHome[0].all.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
+        const l = Boolean(dataHome.length) && dataHome[0].rankPlayers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
         const res = JSON.parse(l)
-        Boolean(dataHome.length) ? setDataRank(res) : <></>
-        //console.log(l, res)
-        console.log("log", dataRank)
+        Boolean(dataHome.length) ? setDataRankPlayers(res) : <></>
+        console.log(l, res)
+        console.log("log", dataRankPlayers)
     }, [dataHome])
 
-    const slidesRankPlayers = [];
-    Boolean(dataHome.length) && dataRank.map((item, index)=>
+
+    const slidesRankPlayers = []
+    Boolean(dataHome.length) && dataRankPlayers.map((item, index)=>
         slidesRankPlayers.push(
             <SwiperSlide key={index}>
+                <Link to={`/Profile/${item.tag.slice(1)}`} >
                 <div className="Card_rank">
                     <div className="Card_rank_header">
-                        <span>{item.name}</span> <span className="text-white font-medium rounded-full bg-input_tag  w-6 h-6 text-center">{item.rank}</span>
+                        <div className="flex items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-12 h-12"></img> <span className="ml-4">{item.name}</span></div>  <span className="text-white font-medium rounded-full bg-input_tag  w-6 h-6 text-center">{item.rank}</span>
                     </div>
-                    <div className="flex justify-center my-5"> <img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp?size=80`}></img></div>
+                    
                     <div className="Card_rank_body">
                         <span>Trophies</span><div className="flex justify-center items-center "><span className="mx-2"><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> <span>{item.trophies}</span></div>
                     </div>        
                 </div>
+                </Link>
             </SwiperSlide>
-        ))
+        )
+    )
 
+    //const slidesRankBrawlers = []
 
+    
     return(
-        <main>
+        <main className="mainHome">
             <div className="input_there">
                     <h1 className="text-xl font-medium mb-1">Input Your Brawl Stars Tag!</h1>
                     <input className="input_tag" type="text" placeholder="Enter your Tag" name={name} value={value} onChange={handleChange} />
@@ -97,54 +105,71 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                     
             </div>
             <div className="rank_swiper_main_div">
-                <h1 className="text-md font-medium ">Top-10 Players in Brawl Stars!</h1>
+                <h1 className="text-md font-medium">Top-10 Players in Brawl Stars!</h1>
+                    <div className="rank_swiper_and_btn">
                         <Swiper className="rank_swiper_main" 
-                            tag="section" 
-                            wrapperTag="ul" 
-                            slidesPerView={1}
-                            spaceBetween={10}
-                            slidesPerGroup={1}
-                            grabCursor={true}
-                            navigation={true}
-                            breakpoints={{
-                                280:{
-                                    slidesPerView:1,
-                                },
-                                480:{
-                                    slidesPerView: 1,
-                                    spaceBetween: 20,
-                                    slidesPerGroup: 1
-                                },
-                                768:{
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                    slidesPerGroup: 2,
-                                },
-                                1024:{
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
-                                    slidesPerGroup: 3,
-                                },
-                                1280:{
-                                    slidesPerView: 4,
-                                    spaceBetween: 10,
-                                    slidesPerGroup: 4,
-                                },
-                                1536:{
-                                    slidesPerView: 4,
-                                    slidesPerGroup: 4,
-                                },
-                            }
-                                
-                            }
-                            pagination={{
-                                clickable: true,
+                                style={{
+                                    "--swiper-navigation-color": "#fff",
+                                    "--swiper-pagination-color": "#fff",
                                 }}
-                            modules={[Pagination, Navigation]}
-                        >
-                            {slidesRankPlayers}
+                                tag="section" 
+                                wrapperTag="ul" 
+                                slidesPerView={1}
+                                spaceBetween={10}
+                                slidesPerGroup={1}
+                                grabCursor={true}
+                                navigation={true}
+                                breakpoints={{
+                                    280:{
+                                        slidesPerView:1,
+                                    },
+                                    480:{
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                        slidesPerGroup: 1
+                                    },
+                                    768:{
+                                        slidesPerView: 3,
+                                        spaceBetween: 20,
+                                        slidesPerGroup: 1,
+                                    },
+                                    // 848:{
+                                    //     slidesPerView: 3,
+                                    //     spaceBetween: 20,
+                                    //     slidesPerGroup: 1,
+                                    // },
+                                    1024:{
+                                        slidesPerView: 3,
+                                        spaceBetween: 20,
+                                        slidesPerGroup: 1,
+                                    },
+                                    1280:{
+                                        slidesPerView: 4,
+                                        spaceBetween: 20,
+                                        slidesPerGroup: 1,
+                                    },
+                                    1536:{
+                                        slidesPerView: 4,
+                                        slidesPerGroup: 1,
+                                    },
+                                }
+                                    
+                                }
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                // thumbs={{ swiper: thumbsSwiper }}
+                                modules={[Pagination, Navigation, Thumbs]}
+                            >
+                                {slidesRankPlayers}
                         </Swiper>
+
+                        <Link to={`/LeaderBoard`}>
+                            <button className="btnToLeaders">Open LeaderBoard</button>
+                        </Link>
                     </div>
+                        
+            </div>
         </main>
     )
  }
