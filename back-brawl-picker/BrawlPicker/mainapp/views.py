@@ -20,21 +20,26 @@ def ip(request):
 
 def apiHome(request):
     client = brawlstats.Client(config.BRAWL_API_KEY)
-    z = []
+    players = []
     if request.method == 'GET':
-        rank = client.get_rankings(ranking='players', limit=10)
+        rankPlayers = client.get_rankings(ranking='players', limit=10)
+        rankBrawlers = client.get_rankings(ranking='brawlers', limit=5, brawler="mortis")
+        print(rankBrawlers)
 
     elif request.method == 'POST':
-        print(request.data)
-        rank = client.get_rankings(ranking='players', limit=10)
+        #print(request.data)
+        rankPlayers = client.get_rankings(ranking='players', limit=10)
+        rankBrawlers = client.get_rankings(ranking='brawlers', limit=5, brawler="mortis")
+        #print(rankBrawlers)
         #print(rank[1])
 
     for i in range(10):
-        l = rank[i]
+        l = rankPlayers[i]
         print(l)
-        z.append(l)
-    print(z)
-    dataHome = [{"all": z,
+        players.append(l)
+    print(players)
+    dataHome = [{"rankPlayers": players,
+                 "rank": rankBrawlers[::],
              }]
 
     results = YourSerializerHome(dataHome, many=True).data
@@ -130,7 +135,7 @@ def index(request):
 
     context = {'data': data, 'gemgrab_context': gemgrab_context}
     results = YourSerializer(data, many=True).data
-    return Response(results, template_name='assessments.html')
+    return Response(results)
     #return Response(results)
 
 
