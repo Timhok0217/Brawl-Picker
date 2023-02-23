@@ -57,7 +57,7 @@ function Profile () {
         // Boolean(data.length) ? setBattle_logs(parsedData) : <></>
         // Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
-        Boolean(data.length) && typeof(res)==undefined ? setBattle_logs(res) :
+        Boolean(data.length) ? setBattle_logs(res) : <></>
         Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
         //console.log("team", battle_logs_team)
