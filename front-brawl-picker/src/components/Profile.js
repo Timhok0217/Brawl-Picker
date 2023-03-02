@@ -134,6 +134,7 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                    
                                 </Link>
                                 )}
                                 {item.battle.teams[1].map((item_logs) =>
@@ -145,6 +146,7 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                    
                                 </Link>
                                 )}
                             </ul>}
@@ -159,6 +161,7 @@ function Profile () {
                                             {item_logs.name} 
                                         </div>
                                     </li>
+                                    
                                 </Link>
                                 )}
                             </ul>}

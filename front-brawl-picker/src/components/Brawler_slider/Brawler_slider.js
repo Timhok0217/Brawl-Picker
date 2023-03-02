@@ -65,7 +65,7 @@ function Brawler_slider ({
                         )
                     }   
                 </div>                    
-                <button className="handle handle_right" onClick={next_carousel}></button>
+                <button className="handle handle_right" onClick={next_carousel}> </button>
             </div>
             {/* <div className="slider-indicators">
                 {Boolean(brawlers.length) && brawlers[0].map((item, index) => (

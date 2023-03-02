@@ -71,7 +71,7 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                 <Link to={`/Profile/${item.tag.slice(1)}`} >
                 <div className="Card_rank">
                     <div className="Card_rank_header">
-                        <div className="flex items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-12 h-12"></img> <span className="ml-4">{item.name}</span></div>  <span className="text-white font-medium rounded-full bg-input_tag  w-6 h-6 text-center">{item.rank}</span>
+                        <div className="flex items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-12 h-12" /> <span className="ml-4">{item.name}</span></div>  <span className="text-white font-medium rounded-full bg-input_tag  w-6 h-6 text-center">{item.rank}</span>
                     </div>
                     
                     <div className="Card_rank_body">
