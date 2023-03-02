@@ -29,7 +29,7 @@ def apiHome(request):
     elif request.method == 'POST':
         #print(request.data)
         rankPlayers = client.get_rankings(ranking='players', limit=10)
-        rankBrawlers = client.get_rankings(ranking='brawlers', limit=5, brawler="mortis")
+        rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler="mortis")
         #print(rankBrawlers)
         #print(rank[1])
 
@@ -39,8 +39,8 @@ def apiHome(request):
         players.append(l)
     print(players)
     dataHome = [{"rankPlayers": players,
-                 "rank": rankBrawlers[::],
-             }]
+                 "rankBrawlers": rankBrawlers[::],
+                }]
 
     results = YourSerializerHome(dataHome, many=True).data
     #return Response(results, template_name='assessments.html')

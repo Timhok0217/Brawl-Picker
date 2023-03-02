@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 class YourSerializerHome(serializers.Serializer):
     rankPlayers = serializers.CharField()
-    rank = serializers.CharField()
+    rankBrawlers = serializers.CharField()
 
 
 class YourSerializer(serializers.Serializer):
