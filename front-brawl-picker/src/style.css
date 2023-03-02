@@ -245,8 +245,8 @@ main {
 
 @media(min-width:1280px){
     .Brawlers_slider{
-        max-width: 880px;
-        --items-per-screen: 4.32;
+        max-width: 930px;
+        --items-per-screen: 4.3;
     } 
 }
 
@@ -267,9 +267,38 @@ main {
     @apply relative left-7 
 }
 
+.handle_left::after{
+    position: absolute;
+    top:25%;
+    left:35%;
+    transform:translate(-50%, -50%);
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg); 
+}
+
 .handle_right{
     @apply relative right-5
 }
+
+.handle_right::after{
+    position: absolute;
+    top:25%;
+    left:20%;
+    transform:translate(-50%, -50%);
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(225deg); 
+}
+
 
 .Brawler_card{
     @apply flex flex-col justify-center items-stretch max-w-xs lg:whitespace-nowrap hover:scale-105 ease-in-out cursor-pointer
@@ -285,7 +314,7 @@ main {
 }
 
 .Brawler_card_img{
-    @apply w-28 mx-auto
+    @apply w-28 h-24 mx-auto
 }
 
 .ul_Brawler_card_stats{
@@ -293,7 +322,7 @@ main {
 }
 
 .ul_Brawler_card_stats > li{
-    @apply flex justify-between items-stretch  md:gap-5 
+    @apply flex justify-between items-stretch  md:gap-4 
 }
 
 .Brawlers_slider_progbar{
@@ -402,11 +431,11 @@ main {
 }
 
 .Brawler_logs_player_img{
-    @apply mx-auto w-9 
+    @apply mx-auto w-10 h-8 mt-0.5
 }
 
 .Brawler_logs_players_name{
-    @apply text-xs overflow-hidden
+    @apply text-xs overflow-hidden leading-5 
      
 }
 
@@ -496,6 +525,77 @@ main {
     font-size: 30px !important;
     margin-right: 30px !important;
     font-weight: 700 !important;
+}
+
+
+.LeaderBoard-main{
+    @apply  max-w-full flex items-center justify-center flex-col mb-20
+
+}
+
+
+.LeaderBoard-wrapper {
+    @apply flex flex-col max-w-[480px]
+}
+
+.LeaderBoard-btn-input {
+    @apply flex gap-5 mb-4 flex-col
+}
+
+.LeaderBoard-player {
+    @apply w-28 bg-input_tag rounded-2xl h-10 text-body_bg font-medium hover:scale-105 active:text-black focus:text-black; 
+    font-family: "Karla", sans-serif;
+}
+
+.LeaderBoard-brawlers {
+    @apply w-28 bg-input_tag rounded-2xl text-body_bg font-medium h-10 hover:scale-105 active:text-black focus:text-black; 
+    font-family: "Karla", sans-serif;
+}
+
+.LeaderBoard-player:focus {
+    outline: none;
+}
+
+.LeaderBoard-player:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.LeaderBoard-brawlers:focus {
+    outline: none;
+}
+
+.LeaderBoard-brawlers:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+
+.LeaderBoard-brawlers-input-wrapper {
+    @apply flex items-center justify-center gap-3
+}
+
+.LeaderBoard-brawlers-input {
+    @apply w-40 h-10 indent-1 text-base font-medium text-center rounded-xl border-input_tag border-solid my-2;
+    font-family: "Karla", sans-serif;
+    border-width: 3px;
+}
+
+
+.LeaderBoard-brawlers-input-btn{
+    @apply  w-20 m-4 rounded-2xl border-0  bg-input_tag text-body_bg cursor-pointer h-8 text-base hover:scale-105; 
+    font-family: "Karla", sans-serif;
+
+}
+
+.LeaderBoard-brawlers-input-btn:focus {
+    outline: none;
+}
+
+.LeaderBoard-brawlers-input-btn:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.LeaderBoard-list {
+    @apply bg-profile_card rounded-lg px-5 text-base text-body_bg
 }
 
 /* .ll{
