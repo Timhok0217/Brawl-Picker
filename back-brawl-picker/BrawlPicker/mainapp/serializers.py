@@ -18,6 +18,7 @@ class YourSerializer(serializers.Serializer):
     duo_wins = serializers.CharField()
     player_icon_id = serializers.CharField()
     brawlers = serializers.CharField()
+    name_color = serializers.CharField()
     power_play_points = serializers.CharField()
     battle_logs = serializers.CharField()
     club_info = serializers.CharField()

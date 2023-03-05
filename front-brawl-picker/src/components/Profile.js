@@ -186,7 +186,7 @@ function Profile () {
                         <img src={`https://media.brawltime.ninja/avatars/${data[0].player_icon_id.slice(7, data[0].player_icon_id.length-1)}.webp`} className="Profile_card_img" alt="icon"/> 
                         <div className="Profile_card_stats">
                             <ul className="ul_Profile_card_stats">
-                                <li><span>Name</span> <span>{data[0].name}</span></li>
+                                <li><span>Name</span> <span style={{color: `#${data[0].name_color.slice(2)}`}} className="font-semibold">{data[0].name}</span></li>
                                 <li><span>Tag</span> <span>{data[0].tag}</span></li>
                                 <li><span>Profile level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Info.png" className="w-4 h-4" alt="new"/> {data[0].exp_level}</span></li>
                                 <li><span>Highest Trophies</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Ranking.png" className="w-4 h-4" alt="new"/> {data[0].highest_trophies}</span></li>

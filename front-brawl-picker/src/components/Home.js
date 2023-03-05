@@ -66,7 +66,7 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
 
     const slidesRankPlayers = []
     Boolean(dataHome.length) && dataRankPlayers.map((item, index)=>
-        slidesRankPlayers.push(
+        (index<10)&&slidesRankPlayers.push(
             <SwiperSlide key={index}>
                 <Link to={`/Profile/${item.tag.slice(1)}`} >
                 <div className="Card_rank">
@@ -82,15 +82,14 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
             </SwiperSlide>
         )
     )
-
-    //const slidesRankBrawlers = []
-
     
     return(
         <main className="mainHome">
             <div className="input_there">
                     <h1 className="text-xl font-medium mb-1">Input Your Brawl Stars Tag!</h1>
-                    <input className="input_tag" type="text" placeholder="Enter your Tag" name={name} value={value} onChange={handleChange} />
+                    <input className="input_tag" type="text" placeholder="Enter your Tag" 
+                        name={name} value={value} onChange={handleChange}
+                    />
                     {/* Для задержки {data_tag !== [] && data_tag[0].tag === value 
                         ?
                         <Link to={`/Profile/${value.slice(1)}`} >
@@ -133,11 +132,6 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                                         spaceBetween: 20,
                                         slidesPerGroup: 1,
                                     },
-                                    // 848:{
-                                    //     slidesPerView: 3,
-                                    //     spaceBetween: 20,
-                                    //     slidesPerGroup: 1,
-                                    // },
                                     1024:{
                                         slidesPerView: 3,
                                         spaceBetween: 20,
@@ -158,7 +152,6 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                                 pagination={{
                                     clickable: true,
                                 }}
-                                // thumbs={{ swiper: thumbsSwiper }}
                                 modules={[Pagination, Navigation, Thumbs]}
                             >
                                 {slidesRankPlayers}

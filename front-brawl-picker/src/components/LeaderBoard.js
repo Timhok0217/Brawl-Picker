@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import {Link, useNavigate } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 import axios from "axios";
 
@@ -12,6 +13,19 @@ function LeaderBoard () {
     const [dataRankPlayers, setDataRankPlayers] = React.useState([])
     const [dataRankBrawlers, setDataRankBrawlers] = React.useState([])
 
+    //Берет инфу с адресной строки
+    //const {brawlerId} = useParams()
+
+    const [brawlerName, setBrawlerName] = React.useState({
+        ent_name: 'shelly'
+    })
+
+    const [toggleSearch, setToggleSearch] = React.useState(true)
+    function toggleSearchBrawler (event) {
+        setToggleSearch(prev => !prev)
+        keepBrawlerName(event)
+    }
+
     useEffect(()=>{
         (async ()=>{
             await axios({
@@ -19,18 +33,20 @@ function LeaderBoard () {
                 url: APILEADERS_URL,
                 data: {
                     dataLeaderBoard: [],
+                    ent_name:`${brawlerName.ent_name}`,
                 },
             })
                 .then(res => setDataLeaderBoard(res.data))
                 .catch(err => console.error(err))
         })()
         //console.log(dataLeaderBoard)
-    }, [])
+        console.log(brawlerName.ent_name)
+    }, [toggleSearch])
 
     useEffect(() => {
         localStorage.setItem("dataLeaderBoard", JSON.stringify(dataLeaderBoard))
         //localStorage.clear()
-        console.log(JSON.parse(localStorage.getItem("dataLeaderBoard")))
+        //console.log(JSON.parse(localStorage.getItem("dataLeaderBoard")))
     }, [dataLeaderBoard])
 
     useEffect(()=>{
@@ -40,21 +56,20 @@ function LeaderBoard () {
         const resBrawler = JSON.parse(brawler)
         Boolean( dataLeaderBoard.length) ? setDataRankPlayers(resPlayer) : <></>
         Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(resBrawler) : <></>
-        console.log(player, resPlayer)
-        console.log(brawler, resBrawler)
+        //console.log(player, resPlayer)
+        //console.log(brawler, resBrawler)
         //console.log("log", dataRankPlayers)
     }, [dataLeaderBoard])
 
-
-    // const [tag, setTag] = React.useState({
-    //     ent_tag: ''
-    // })
-
-    // //const [show_tag, setShow_tag] = React.useState(false)
-
-    // // const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || {
-    // //     data: ""
-    // // })
+    function keepBrawlerName (event) {
+        const {name, value} = event.target
+        setBrawlerName(prev => {
+            return{
+                ...prev,
+                [name]: value,
+            }
+        })
+    }
 
     const [toggleBrawlers, setToggleBrawlers] = React.useState(false)
     const [togglePlayer, setTogglePlayer] = React.useState(true)
@@ -76,6 +91,11 @@ function LeaderBoard () {
         }
     }
 
+    function handleKeyDown (event) {
+        if (event.key === 'Enter') {
+            toggleSearchBrawler(event)
+        }
+    }
 
     return(
         <div className="LeaderBoard-main">
@@ -88,21 +108,27 @@ function LeaderBoard () {
                         <button className="LeaderBoard-brawlers" onClick={handleToggleBrawlers} >Brawlers</button>
                     </div>
                     {Boolean(toggleBrawlers) && <div className="LeaderBoard-brawlers-input-wrapper">
-                        <input className="LeaderBoard-brawlers-input" type="text" placeholder="Enter brawler name"/>
-                        <button className="LeaderBoard-brawlers-input-btn">Search</button>
+                        <input className="LeaderBoard-brawlers-input" type="text" placeholder="Enter brawler name" 
+                            name={"ent_name"} value={brawlerName.ent_name} onChange={keepBrawlerName} 
+                            onKeyDown={handleKeyDown} tabIndex="0"
+                        />
+                        <button className="LeaderBoard-brawlers-input-btn" onClick={toggleSearchBrawler}>Search</button>
                     </div>}
                 </div>
 
                 <ul className="LeaderBoard-list">
                     {/* <li className="Top players"><div>Top 20 players</div></li> */}
-                    {Boolean(dataLeaderBoard) && togglePlayer ? dataRankPlayers.map((item, index) => 
-                        <li className="flex justify-between items-center my-3"><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                    {Boolean(dataLeaderBoard) && togglePlayer ? dataRankPlayers.map((item, index) =>
+                        <Link to={`/Profile/${item.tag.slice(1)}`} key={index}> 
+                            <li className="flex justify-between items-center my-3" key={index}><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                        </Link>
                     ) : dataRankBrawlers.map((item, index) => 
-                        <li className="flex justify-between items-center my-3"><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                        <Link to={`/Profile/${item.tag.slice(1)}`} key={index}>
+                            <li className="flex justify-between items-center my-3" key={index}><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                        </Link>
                     )}
                 </ul>
             </div>
-            
         </div>
         
 

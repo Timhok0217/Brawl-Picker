@@ -1,4 +1,5 @@
 import brawlstats
+import json
 import copy
 from django.shortcuts import render
 from requests import get
@@ -21,24 +22,27 @@ def ip(request):
 def apiHome(request):
     client = brawlstats.Client(config.BRAWL_API_KEY)
     players = []
+    print(request.data)
     if request.method == 'GET':
         rankPlayers = client.get_rankings(ranking='players', limit=10)
+        #nameBrawler = request.data['ent_name'] + ''
         rankBrawlers = client.get_rankings(ranking='brawlers', limit=5, brawler="mortis")
-        print(rankBrawlers)
+        #print(request.data)
 
     elif request.method == 'POST':
-        #print(request.data)
-        rankPlayers = client.get_rankings(ranking='players', limit=10)
-        rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler="mortis")
-        #print(rankBrawlers)
-        #print(rank[1])
+        print(request.data)
 
-    for i in range(10):
-        l = rankPlayers[i]
-        print(l)
-        players.append(l)
-    print(players)
-    dataHome = [{"rankPlayers": players,
+        isKey = request.data.keys()
+        rankPlayers = client.get_rankings(ranking='players', limit=20)
+        if 'ent_name' in isKey:
+            nameBrawler = request.data['ent_name']
+            print(nameBrawler)
+            rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler=nameBrawler)
+        else:
+            rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler="shelly")
+
+
+    dataHome = [{"rankPlayers": rankPlayers[::],
                  "rankBrawlers": rankBrawlers[::],
                 }]
 
@@ -87,6 +91,7 @@ def index(request):
                  'duo_wins': player.duo_victories,
                  'player_icon_id': player.icon,
                  'brawlers': player.brawlers,
+                 'name_color': player.name_color,
                  'power_play_points': player.power_play_points,
                  'battle_logs': battle_log[:10],
                  "club_info": 0,
@@ -103,6 +108,7 @@ def index(request):
                  'duo_wins': player.duo_victories,
                  'player_icon_id': player.icon,
                  'brawlers': player.brawlers,
+                 'name_color': player.name_color,
                  'power_play_points': player.power_play_points,
                  'battle_logs': battle_log[:10],
                  "club_info": [club.tag,
