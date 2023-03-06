@@ -111,13 +111,7 @@ def index(request):
                  'name_color': player.name_color,
                  'power_play_points': player.power_play_points,
                  'battle_logs': battle_log[:10],
-                 "club_info": [club.tag,
-                               club.name,
-                               club.description,
-                               club.type,
-                               club.trophies,
-                               club.required_trophies,
-                               club.members],
+                 "club_name": club.name,
                  }]
 
 

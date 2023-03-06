@@ -21,7 +21,9 @@ class YourSerializer(serializers.Serializer):
     name_color = serializers.CharField()
     power_play_points = serializers.CharField()
     battle_logs = serializers.CharField()
-    club_info = serializers.CharField()
+    club_name = serializers.CharField()
+    club_tag = serializers.CharField()
+
 
 # data = 231
 # serializer = StudentSerializer(data, context={'request': request}, many=True)

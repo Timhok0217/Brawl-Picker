@@ -396,27 +396,35 @@ main {
 }
 
 .Battle_logs_body_name_img{
-    @apply w-10 h-10 
+    @apply w-9 h-9 
 }
 
 
 
 .Brawler_logs_stats{
     /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
-    @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover;
+    @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover relative;
     background-image: url("./img/brawl_ball.jpg");
     height: auto;
     //background: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
+    //backdrop-filter: brightness(80%);
     
-    //filter: brightness(70%);  
 }
+/* .Brawler_logs_stats::after {
+    content: '';
+    position: absolute;
+    //backdrop-filter: brightness(80%); 
+    width: auto;
+    height: auto;
+    top: 0; left: 0;
+    background: linear-gradient(to bottom, transparent 0%,  rgba(0,0,0,0.9) 100%);
+}    */
 /* .img_Brawler_logs_stats{
-    background-image: url("./img/brawl_ball.jpg");
-    background-size: 100%;
-    //background: rgba(0, 0, 0, 0.5);
-    background-repeat: no-repeat;
-    filter: brightness(70%); 
+    //height: 100%;
+    //width: 100%;
+    //backdrop-filter: brightness(80%);
+    //filter: brightness(50%); 
 } */
 
 
@@ -437,7 +445,7 @@ main {
 }
 
 .Brawler_logs_players_name{
-    @apply text-xs overflow-hidden leading-5 
+    @apply text-xs overflow-hidden text-ellipsis leading-5 h-5
      
 }
 
@@ -454,7 +462,7 @@ main {
 }
 
 .Brawler_logs_players_name_shd{
-    @apply text-xs overflow-hidden
+    @apply text-xs overflow-hidden text-ellipsis leading-5 
 }
 
 
