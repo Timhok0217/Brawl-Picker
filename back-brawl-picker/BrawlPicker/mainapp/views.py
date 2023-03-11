@@ -1,6 +1,7 @@
 import brawlstats
 import json
 import copy
+import requests
 from django.shortcuts import render
 from requests import get
 from rest_framework.decorators import api_view, renderer_classes
@@ -21,7 +22,22 @@ def ip(request):
 
 def apiHome(request):
     client = brawlstats.Client(config.BRAWL_API_KEY)
+    headers = {
+        'authorization': 'Bearer ' + config.BRAWL_API_KEY,
+    }
     players = []
+
+    responseEvents = requests.get(f'https://api.brawlstars.com/v1/events/rotation', headers=headers)
+    #print(response.__dict__) #Вывод всего
+    #print(responseEvents.text)
+
+    responseBrawlers = requests.get(f'https://api.brawlstars.com/v1/brawlers', headers=headers).text
+    dictBrawlers = json.loads(responseBrawlers)['items']
+    #print(dictBrawlers)
+
+    responseRankPlayers = ''
+    responseRankBrawlers = ''
+
     print(request.data)
     if request.method == 'GET':
         rankPlayers = client.get_rankings(ranking='players', limit=10)
@@ -33,17 +49,39 @@ def apiHome(request):
         print(request.data)
 
         isKey = request.data.keys()
-        rankPlayers = client.get_rankings(ranking='players', limit=20)
+        #rankPlayers = client.get_rankings(ranking='players', limit=20)
+
+        responseRankPlayers = requests.get(f'https://api.brawlstars.com/v1/rankings/global/players?limit=100', headers=headers).text
+        #print(responseRankPlayers.text)
         if 'ent_name' in isKey:
             nameBrawler = request.data['ent_name']
             print(nameBrawler)
-            rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler=nameBrawler)
+
+            thisDictForBralwerId = ""
+            answer=""
+            for x in dictBrawlers :
+                thisDictForBralwerId = x.get('name')
+                if thisDictForBralwerId == nameBrawler.upper():
+                    answer = x.get('id', 16000000)
+                    break
+
+            print(answer)
+
+            #rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler=nameBrawler)
+            responseRankBrawlers = requests.get(
+                f'https://api.brawlstars.com/v1/rankings/global/brawlers/{answer}?limit=100',
+                headers=headers).text
+            #print(responseRankBrawlers.text)
         else:
-            rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler="shelly")
+            responseRankBrawlers = requests.get(f'https://api.brawlstars.com/v1/rankings/global/brawlers/16000000?limit=100',
+                                               headers=headers).text
+            #print(responseRankBrawlers.text)
+            #rankBrawlers = client.get_rankings(ranking='brawlers', limit=20, brawler="shelly")
 
 
-    dataHome = [{"rankPlayers": rankPlayers[::],
-                 "rankBrawlers": rankBrawlers[::],
+    dataHome = [{"rankPlayers": responseRankPlayers,
+                 "rankBrawlers": responseRankBrawlers,
+                 "events": responseEvents.text,
                 }]
 
     results = YourSerializerHome(dataHome, many=True).data
@@ -55,6 +93,11 @@ def apiHome(request):
 def index(request):
     client = brawlstats.Client(config.BRAWL_API_KEY)
 
+    headers = {
+        'authorization': 'Bearer ' + config.BRAWL_API_KEY,
+    }
+
+
     #rank = client.get_rankings("players", "ru", 10)
 
     # Получение информации о профиле игрока по тэгу
@@ -62,6 +105,8 @@ def index(request):
     if request.method == 'GET':
         player = client.get_profile('9J2RLRYYY')
         battle_log = client.get_battle_logs('9J2RLRYYY')
+        #constants = client.get_constants("maps")
+        #print(constants)
         try:
             club = client.get_club(player.club.tag)
         except:
@@ -71,10 +116,19 @@ def index(request):
 
     elif request.method == 'POST':
         print(request.data)
+        responseBattleLogs = requests.get(f'https://api.brawlstars.com/v1/players/%23{request.data["ent_tag"][1::]}/battlelog', headers=headers)
+        # print(response.__dict__) #Вывод всего
+        #print(responseBattleLogs.text)
         player = client.get_player(request.data['ent_tag'])
         battle_log = client.get_battle_logs(request.data['ent_tag'])
+        # constants = client.get_constants(key='maps')
+        # print(constants)
         try:
             club = client.get_club(player.club.tag)
+
+            #Для прямого вызова к клубу
+            #responseClub = requests.get(f'https://api.brawlstars.com/v1/clubs/%23{player.club.tag[1::]}', headers=headers)
+            #print("responseClub", responseClub.text)
         except:
             #print("No Club!")
             club = 0
@@ -93,8 +147,11 @@ def index(request):
                  'brawlers': player.brawlers,
                  'name_color': player.name_color,
                  'power_play_points': player.power_play_points,
-                 'battle_logs': battle_log[:10],
+                 'battle_logs': battle_log[::],
+                 "club_name": 0,
                  "club_info": 0,
+                 "club_members": 0,
+                 "response_battle_logs": responseBattleLogs.text,
                  }]
     else:
         data = [{'name': player.name,
@@ -110,8 +167,16 @@ def index(request):
                  'brawlers': player.brawlers,
                  'name_color': player.name_color,
                  'power_play_points': player.power_play_points,
-                 'battle_logs': battle_log[:10],
-                 "club_name": club.name,
+                 'battle_logs': battle_log[::],
+                 "club_name": player.club.name,
+                 "club_info": [club.tag,
+                               club.name,
+                               club.description,
+                               club.type,
+                               club.trophies,
+                               club.required_trophies],
+                 "club_members": club.members,
+                 "response_battle_logs": responseBattleLogs.text,
                  }]
 
 

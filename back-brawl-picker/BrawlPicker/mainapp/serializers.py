@@ -4,6 +4,7 @@ from rest_framework import serializers
 class YourSerializerHome(serializers.Serializer):
     rankPlayers = serializers.CharField()
     rankBrawlers = serializers.CharField()
+    events = serializers.CharField()
 
 
 class YourSerializer(serializers.Serializer):
@@ -23,6 +24,9 @@ class YourSerializer(serializers.Serializer):
     battle_logs = serializers.CharField()
     club_name = serializers.CharField()
     club_tag = serializers.CharField()
+    club_info = serializers.CharField()
+    club_members = serializers.CharField()
+    response_battle_logs = serializers.CharField()
 
 
 # data = 231
