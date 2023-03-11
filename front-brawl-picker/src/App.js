@@ -9,6 +9,8 @@ import BrawlTierList from "./components/BrawlTierList";
 import FooterPhone from "./components/FooterPhone";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
+import Club from "./components/Club";
+import Footer from "./components/Footer";
 
 const API_URL = 'http://127.0.0.1:8000/api/'
 
@@ -77,6 +79,10 @@ function App () {
                     path="/LeaderBoard"
                     element={<LeaderBoard/>}
                 />
+                <Route 
+                    path="/Club/:clubTag"
+                    element={<Club />}
+                />
                 <Route
                     path="/About"
                     element={<About/>} 
@@ -88,6 +94,9 @@ function App () {
             </Routes>
             <div className="flex lg:hidden">
                 <FooterPhone/>
+            </div>
+            <div className="hidden lg:flex" >
+                <Footer />
             </div>
         </div>
     )

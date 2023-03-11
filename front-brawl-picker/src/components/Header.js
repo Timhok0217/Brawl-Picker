@@ -11,7 +11,7 @@ import {Link, useResolvedPath, useMatch} from "react-router-dom"
                 <CustomLink to="/BrawlTierList" className="BrawlerTierList"> BrawlTierList </CustomLink>
                 <CustomLink to="/" className="Profile_link"> Profile </CustomLink>
                 <CustomLink to="/About" className="About_phone">
-                    <img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/helpbutton_85772.png" className="w-6" alt="new"/>
+                    <div className="w-8 rounded-full border-2 flex justify-center opacity-70 items-center hover:opacity-100 hover:text-body_bg">i</div>
                 </CustomLink>
                 {/* <li className="header_Map_Tier_List"> Map Tier List</li>
                 <li className="header_Brawler_Tier_List"> Brawler Tier List</li>
