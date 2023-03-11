@@ -50,12 +50,21 @@ function LeaderBoard () {
     }, [dataLeaderBoard])
 
     useEffect(()=>{
-        const player = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankPlayers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        const brawler = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankBrawlers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        const resPlayer = JSON.parse(player)
-        const resBrawler = JSON.parse(brawler)
-        Boolean( dataLeaderBoard.length) ? setDataRankPlayers(resPlayer) : <></>
-        Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(resBrawler) : <></>
+        // const player = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankPlayers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
+        // const brawler = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankBrawlers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
+        //const resPlayer = JSON.parse(player)
+        //const resBrawler = JSON.parse(brawler)
+
+        Boolean(dataLeaderBoard.length) && console.log(dataLeaderBoard[0])
+        const responseRankPlayers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankPlayers)
+        const responseRankBrawlers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankBrawlers)
+
+        //Boolean( dataLeaderBoard.length) ? setDataRankPlayers(resPlayer) : <></>
+        Boolean( dataLeaderBoard.length) ? setDataRankPlayers(responseRankPlayers.items) : <></>
+
+
+        //Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(resBrawler) : <></>
+        Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(responseRankBrawlers.items) : <></>
         //console.log(player, resPlayer)
         //console.log(brawler, resBrawler)
         //console.log("log", dataRankPlayers)
@@ -99,9 +108,9 @@ function LeaderBoard () {
 
     return(
         <div className="LeaderBoard-main">
-            <h1 className="text-xl font-medium mt-4 mb-1 text-center">Brawl Stars Trophies Leaderboard</h1>
+            <h1 className="text-xl font-medium mt-4 mb-4 text-center">Brawl Stars Trophies Leaderboard</h1>
             <div className="LeaderBoard-wrapper"> 
-                <div className="text-xl my-4">Top 20 players by all trophies or on some brawler!</div>
+                <div className="text-xl my-4">Top 100 players by all trophies or on some brawler!</div>
                 <div className="LeaderBoard-btn-input">
                     <div className="flex justify-around">
                         <button className="LeaderBoard-player" onClick={handleTogglePlayer} autoFocus>Players</button>
@@ -120,11 +129,39 @@ function LeaderBoard () {
                     {/* <li className="Top players"><div>Top 20 players</div></li> */}
                     {Boolean(dataLeaderBoard) && togglePlayer ? dataRankPlayers.map((item, index) =>
                         <Link to={`/Profile/${item.tag.slice(1)}`} key={index}> 
-                            <li className="flex justify-between items-center my-3" key={index}><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                            <li className="flex justify-between items-center my-3" key={index}>
+                                <div className="flex gap-3 items-center">
+                                    <span className="w-5 text-end">{index+1}</span> 
+                                    <div className="flex gap-2 items-center">
+                                        <img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> 
+                                        <span className="font-medium">{item.name}</span>
+                                    </div>
+                                </div> 
+                                <div className="flex items-center gap-1">
+                                    <span>{item.trophies}</span>
+                                    <span>
+                                        <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/>
+                                    </span>
+                                </div>
+                            </li>                        
                         </Link>
                     ) : dataRankBrawlers.map((item, index) => 
                         <Link to={`/Profile/${item.tag.slice(1)}`} key={index}>
-                            <li className="flex justify-between items-center my-3" key={index}><div className="flex gap-3 items-center"><span className="w-5 text-end">{index+1}</span> <div className="flex gap-2 items-center"><img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> <span className="font-medium">{item.name}</span></div></div> <span>{item.trophies}</span></li>
+                            <li className="flex justify-between items-center my-3" key={index}>
+                                <div className="flex gap-3 items-center">
+                                    <span className="w-5 text-end">{index+1}</span> 
+                                    <div className="flex gap-2 items-center">
+                                        <img src={`https://media.brawltime.ninja/avatars/${item.icon.id}.webp`} className="w-9 h-9"/> 
+                                        <span className="font-medium">{item.name}</span>
+                                    </div>
+                                </div> 
+                                <div className="flex items-center gap-1">
+                                    <span>{item.trophies}</span>
+                                    <span>
+                                        <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/>
+                                    </span>
+                                </div>
+                            </li>                        
                         </Link>
                     )}
                 </ul>

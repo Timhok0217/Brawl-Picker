@@ -25,7 +25,11 @@ function Profile () {
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
     const [battle_logs, setBattle_logs] = React.useState([])
+
+    const [responseBattle_logs, setResponseBattle_logs] = React.useState([])
+    
     const [clubInfo, setClubInfo] = React.useState([])
+    const [clubMembers, setClubMembers] = React.useState([])
     
     useEffect(()=>{
         (async ()=>{
@@ -49,21 +53,32 @@ function Profile () {
     }, [data])
 
     useEffect(()=>{
-        //const parsedData = Boolean(data.length)&&JSON.parse(data[0].battle_logs.replace(/Box\(/g, '').replace(/\)/g, '').replace(/(?<!\w)'|'(?!\w)|(?<=[#\s])'/g, '"').replace(/None/g, '"None"'))
-        //console.log("parse_data", parsedData)
-        const l = Boolean(data.length) && data[0].battle_logs.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        const res = JSON.parse(l)
+        const clubParse = Boolean(data.length) && data[0].club_info.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
+        const resClubParse = JSON.parse(clubParse)
+
+        //Замена на прямой вызов к API
+        //Boolean(data.length) && console.log(data[0].response_battle_logs)
+        const responseBattle = Boolean(data.length) && JSON.parse(data[0].response_battle_logs)
+        //Boolean(data.length) && console.log("responseBattle", responseBattle.items)
+
+        //const clubMembersParse = Boolean(data.length) && JSON.parse(data[0].club_members[0])
         // Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
         // Boolean(data.length) ? setBattle_logs(parsedData) : <></>
         // Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
-        Boolean(data.length) ? setBattle_logs(res) : <></>
+        
+        //Boolean(data.length) ? setBattle_logs(res) : <></>
+        Boolean(data.length) ? setBattle_logs(responseBattle.items) : <></>
+
         Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
+        Boolean(data.length) ? setClubInfo(resClubParse) : <></>
+        Boolean(data.length) ? setClubMembers(eval('{[' + data[0].club_members + ']}')) : <></>
         //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
         //console.log("team", battle_logs_team)
         console.log("brawlers_obj", brawlers)
         console.log("battle_log", battle_logs)
         console.log("clubInfo", clubInfo)
+        console.log("clubMembers", clubMembers)
         //console.log(l, res)
         
     }, [data])
@@ -103,49 +118,66 @@ function Profile () {
                         <div className="Battle_logs_header" >
                             <span className="span_Battle_logs_header">
                                 <span className="span_Battle_logs_header_result" >{item.battle.result} {item.battle.rank ? <span>Rank {item.battle.rank}</span>:<></>}</span>
-                                <span className="span_Battle_logs_header_trophy" >{item.battle.trophy_change ? (item.battle.result === "victory" || Math.sign(item.battle.trophy_change)==1 ? <p>+</p> : Math.sign(item.battle.trophy_change) !== -1 ? <p>-</p> : <></>) : <></>}
-                                {item.battle.trophy_change}</span>
-                                {item.battle.trophy_change ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
+                                <span className="span_Battle_logs_header_trophy" >{item.battle.trophyChange ? (item.battle.result === "victory" || Math.sign(item.battle.trophyChange)==1 ? <p>+</p> : Math.sign(item.battle.trophyChange) !== -1 ? <p>-</p> : <></>) : <></>}
+                                {item.battle.trophyChange}</span>
+                                {item.battle.trophyChange ? <img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/> : <></>}
                             </span>
-                            {/* <span className="span_Battle_logs_header">
-                                {item.battle.type}
-                            </span> */}
+
                             <span className="span_Battle_logs_header">
                                 {
-                                    Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`) < 1000*60 ?
+                                    Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`) < 1000*60 ?
                                         "now" :
-                                        Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`) < 1000*60*60 ?
-                                            Math.floor((Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`))/(1000*60))+" minutes ago" :
-                                            Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`) < 1000*60*60*24 ?
-                                                "about "+Math.floor((Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`))/(1000*60*60))+" hours ago" :
-                                                Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`) < 1000*60*60*24*30 ? 
-                                                    "about "+Math.floor((Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`))/(1000*60*60*24))+" days ago" : 
-                                                    "about "+Math.floor((Date.now()-Date.parse(`${item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)}`))/(1000*60*60*24*30))+" months ago"              
+                                        Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`) < 1000*60*60 ?
+                                            Math.floor((Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`))/(1000*60))+" minutes ago" :
+                                            Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`) < 1000*60*60*24 ?
+                                                "about "+Math.floor((Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`))/(1000*60*60))+" hours ago" :
+                                                Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`) < 1000*60*60*24*30 ? 
+                                                    "about "+Math.floor((Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`))/(1000*60*60*24))+" days ago" : 
+                                                    "about "+Math.floor((Date.now()-Date.parse(`${item.battleTime.slice(0, 4)+"-"+item.battleTime.slice(4, 6)+"-"+item.battleTime.slice(6, 11)+":"+item.battleTime.slice(11, 13)+":"+item.battleTime.slice(13)}`))/(1000*60*60*24*30))+" months ago"              
                                 }
                             </span>
-                            {/* {item.battle_time.slice(0, 4)+"-"+item.battle_time.slice(4, 6)+"-"+item.battle_time.slice(6, 11)+":"+item.battle_time.slice(11, 13)+":"+item.battle_time.slice(13)} */}
                         </div>
-                        <div className="Battle_logs_body_name">
-                            <img src={`https://media.brawltime.ninja/modes/${item.battle.mode[0] === "b" ? item.battle.mode.split("B").join("-b").toLowerCase() :
+                        <div className="Battle_logs_body_name" style={{background: `${item.battle.mode.startsWith("br") ? "#5475DF" :
+                                                                        item.battle.mode[0] === "g" ? "#7425BF" :
+                                                                        item.battle.mode.startsWith("hot") ? "#890E1C" :
+                                                                        item.battle.mode.startsWith("bos") ? "#900020" :
+                                                                        item.battle.mode.startsWith("hei") ? "#94379B" :
+                                                                        item.battle.mode.startsWith("boun") ? "#178185" :
+                                                                        item.battle.mode.startsWith("bask") ? "#BF4D0A" :
+                                                                        item.battle.mode.startsWith("duel") ? "#468CD5" :
+                                                                        item.battle.mode[0] === "s" ? "#5C9B15" :
+                                                                        item.battle.mode[0] === "d" ? "#5C9B15" :
+                                                                        item.battle.mode[0] === "k" ? "#9B3401" :
+                                                                        "#5475DF"}`}}>
+
+                            <img src={`https://media.brawltime.ninja/modes/${item.battle.mode.startsWith("br") ? item.battle.mode.split("B").join("-b").toLowerCase() :
+                                                                                item.battle.mode.startsWith("bos") ? item.battle.mode.split("F").join("-f").toLowerCase() :
+                                                                                item.battle.mode.startsWith("baske") ? item.battle.mode.split("B").join("-b").toLowerCase() :
                                                                                 item.battle.mode[0] === "g" ? item.battle.mode.split("G").join("-g").toLowerCase() :
                                                                                 item.battle.mode[0] === "h" ? item.battle.mode.split("Z").join("-z").toLowerCase() :
                                                                                 item.battle.mode[0] === "s" ? item.battle.mode.split("S").join("-s").toLowerCase() :
                                                                                 item.battle.mode[0] === "d" ? item.battle.mode.split("S").join("-s").toLowerCase() :
-                                                                                item.battle.mode.toLowerCase()}/icon.webp`} className="Battle_logs_body_name_img" alt="icon"/>
+                                                                                item.battle.mode.toLowerCase()}/icon.webp`} 
+                                                                                className="Battle_logs_body_name_img" alt="icon"
+                            />
+
                             <div className="Battle_logs_name_block">
                                 <h2 className="Battle_logs_name_mode">{item.battle.mode}</h2>
-                                <h3 className="Battle_logs_name_map">{item.event.map !== "None" ? item.event.map : <></>}</h3>
+                                <h3 className="Battle_logs_name_map">{item.event.map !== "null" ? item.event.map : <></>}</h3>
                             </div>
                         </div>
-                        <div className="Brawler_logs_stats" style={{backgroundImage: "url("+`https://media.brawltime.ninja/modes/${item.battle.mode[0] === "b" ? item.battle.mode.split("B").join("-b").toLowerCase() :
-                                                                                item.battle.mode[0] === "g" ? item.battle.mode.split("G").join("-g").toLowerCase() :
-                                                                                item.battle.mode[0] === "h" ? item.battle.mode.split("Z").join("-z").toLowerCase() :
-                                                                                item.battle.mode[0] === "s" ? item.battle.mode.split("S").join("-s").toLowerCase() :
-                                                                                item.battle.mode[0] === "d" ? item.battle.mode.split("S").join("-s").toLowerCase() :
-                                                                                item.battle.mode.toLowerCase()}/background.webp`+")", backdropFilter: `brightness(50%)`}}>
-                            <div className="img_Brawler_logs_stats">
 
-                            {item.battle.mode !== ("soloShowdown" || "duoShowdown") && 
+                        <div className="Brawler_logs_stats" style={{backgroundImage: "url("+`https://media.brawltime.ninja/modes/${item.battle.mode.startsWith("br") ? item.battle.mode.split("B").join("-b").toLowerCase() :
+                                                                        item.battle.mode.startsWith("bos") ? item.battle.mode.split("F").join("-f").toLowerCase() :
+                                                                        item.battle.mode.startsWith("baske") ? item.battle.mode.split("B").join("-b").toLowerCase() :
+                                                                        item.battle.mode[0] === "g" ? item.battle.mode.split("G").join("-g").toLowerCase() :
+                                                                        item.battle.mode[0] === "h" ? item.battle.mode.split("Z").join("-z").toLowerCase() :
+                                                                        item.battle.mode[0] === "s" ? item.battle.mode.split("S").join("-s").toLowerCase() :
+                                                                        item.battle.mode[0] === "d" ? item.battle.mode.split("S").join("-s").toLowerCase() :
+                                                                        item.battle.mode.toLowerCase()}/background.webp`+")", backdropFilter: `brightness(50%)`}}>
+                            
+
+                            {item.battle.mode !== ("soloShowdown" || "duoShowdown" || "bossFight") && 
                             <ul className="ul_Brawler_logs_players">
                                 {item.battle.teams[0].map((item_logs) => 
                                 <Link to={`/Profile/${item_logs.tag.slice(1)}`} >
@@ -173,7 +205,7 @@ function Profile () {
                                 </Link>
                                 )}
                             </ul>}
-                            {item.battle.mode == ("soloShowdown" || "duoShowdown") && 
+                            {item.battle.mode === ("soloShowdown" || "duoShowdown") && 
                             <ul className="ul_Brawler_logs_players_shd">
                                 {item.battle.players.map((item_logs, index) => 
                                 <Link to={`/Profile/${item_logs.tag.slice(1)}`} >
@@ -188,7 +220,8 @@ function Profile () {
                                 </Link>
                                 )}
                             </ul>}
-                            </div>
+                            
+                            
                         </div>
                     </div>
             </SwiperSlide>
@@ -212,10 +245,11 @@ function Profile () {
                             <ul className="ul_Profile_card_stats">
                                 <li><span>Name</span> <span  className="flex items-center gap-1.5"><div style={{background: `#${data[0].name_color.slice(2)}`}} className="w-4 h-4 border-black border-2"></div>{data[0].name}</span></li>
                                 <li><span>Tag</span> <span>{data[0].tag}</span></li>
-                                {data[0].club_name && 
+                                {(data[0].club_name !== "0") && 
                                     <li><span>Club</span>
-                                        {/* <Link></Link>  */}
-                                        <span className="flex items-center gap-1"><span><img  src={"https://brawltime.ninja/assets/club.dfc3d943.png"} className="w-4 h-4"/></span>{data[0].club_name}</span>
+                                        <Link to={`/Club/${data[0].club_tag.slice(1)}`} state={{clubInfo, clubMembers}}>
+                                            <span className="flex items-center gap-1"><span><img  src={"https://brawltime.ninja/assets/club.dfc3d943.png"} className="w-4 h-4"/></span><span className="underline decoration-2">{data[0].club_name}</span></span>
+                                        </Link> 
                                     </li>
                                 }
                                 <li><span>Profile level</span> <span className="span_Profile_card_stats"> <img src="https://cdn.brawlify.com/icon/Info.png" className="w-4 h-4" alt="new"/> {data[0].exp_level}</span></li>

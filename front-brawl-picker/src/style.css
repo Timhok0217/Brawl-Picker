@@ -6,8 +6,12 @@
     --items-per-screen: 3;
   }
 
+html {
+    height: 100%;
+}
+
 body{
-    @apply bg-body_bg 
+    @apply min-h-full relative bg-[#18181B] text-body_bg
 }
 
 .header_brawl{
@@ -22,7 +26,7 @@ body{
 
 .list_header{ 
     @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-8 ;
-    font-family: 'Karla';
+    font-family: 'Roboto';
     list-style-type: none;
     
 }
@@ -37,7 +41,7 @@ body{
 }
 
 .header_brawl li:hover {
-    @apply bg-indigo-500
+    @apply text-gray-400
 }
 
 .LeaderBoard{
@@ -58,7 +62,7 @@ body{
 
 
 main {
-    @apply  px-4 py-10 phone:px-5 sm:px-8 md:px-10 lg:px-14;
+    @apply  px-4 py-10 phone:px-5 sm:px-8 md:px-10 lg:px-14 mb-24;
     font-family: 'Roboto';
     
 }
@@ -68,16 +72,17 @@ main {
 }
 
 .input_tag{
-    @apply w-64 h-20 indent-1 text-xl font-medium text-center rounded-3xl border-input_tag border-solid my-2;
+    @apply w-64 h-20 indent-1 text-xl font-medium text-center rounded-3xl border-input_tag border-solid my-2 text-gray-900 uppercase;
     font-family: "Roboto", sans-serif;
     border-width: 4px;
 }
 
 .btn_tag{
-    @apply  w-28 m-4 rounded-2xl border-0 text-white cursor-pointer h-10 text-lg hover:scale-105; 
+    @apply  w-28 m-4 rounded-2xl border-0 text-body_bg cursor-pointer h-10 text-lg hover:scale-105; 
     font-family: "Roboto", sans-serif;
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
+
 
 .btn_tag:focus {
     outline: none;
@@ -88,7 +93,7 @@ main {
 }
 
 .Profile{
-    @apply px-4 mx-8 mb-20 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
+    @apply px-4 mx-8 mb-24 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
     font-family: "Roboto";
 }
 
@@ -98,7 +103,7 @@ main {
 }
 
 .Profile_card{
-    @apply mb-4 flex flex-col items-stretch bg-profile_card  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center lg:sticky lg:top-8
+    @apply mb-4 flex flex-col items-stretch bg-[#52525B]  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center lg:sticky lg:top-8
 }
 
 .Profile_card_name{
@@ -126,13 +131,13 @@ main {
 }
 
 .footer_phone_brawl{
-    @apply fixed bottom-0 flex items-center text-white h-16 px-5 w-full z-10; 
+    @apply fixed bottom-0 flex items-center text-white h-[72px] px-5 w-full z-10; 
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
 .list_footer_phone{
     @apply flex justify-around items-center font-normal text-base w-full;
-    font-family: 'Karla';
+    font-family: 'Roboto';
     list-style-type: none;
 }
 
@@ -141,7 +146,7 @@ main {
 }
 
 .footer_phone_brawl li:hover {
-    @apply bg-indigo-500
+    @apply  text-gray-400
 }
 
 .footer_phone_Profile{
@@ -238,7 +243,7 @@ main {
     } 
 }
 
-@media(min-width:1100px){
+@media(min-width:1110px){
     .Brawlers_slider{
         max-width: 720px;
         --items-per-screen: 3.2;
@@ -247,8 +252,8 @@ main {
 
 @media(min-width:1280px){
     .Brawlers_slider{
-        max-width: 930px;
-        --items-per-screen: 4.3;
+        max-width: 890px;
+        --items-per-screen: 3.16;
     } 
 }
 
@@ -262,7 +267,7 @@ main {
 
 
 .handle{
-    @apply w-10 bg-input_tag z-10 cursor-pointer opacity-70 rounded-3xl h-10 hover:bg-emerald-500 hover:opacity-100
+    @apply w-10 bg-input_tag z-10 cursor-pointer opacity-60 rounded-3xl h-10  hover:opacity-100
 }
 
 .handle_left{
@@ -304,7 +309,7 @@ main {
 
 .Brawler_card{
     @apply flex flex-col justify-center items-stretch max-w-xs lg:whitespace-nowrap hover:scale-105 ease-in-out cursor-pointer
-     bg-profile_card w-52 py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
+    bg-[#52525B] w-52 py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
       lg:w-52;
       /* lg:items-center */
       flex: 0 0 calc(100% / var(--items-per-screen))
@@ -356,7 +361,7 @@ main {
 }
 
 .Battle_logs_Card{
-    @apply w-auto rounded-lg bg-profile_card h-auto 
+    @apply w-auto rounded-lg bg-[#52525B] h-auto 
 }
 
 .Battle_logs_header{
@@ -380,7 +385,7 @@ main {
 } */
 
 .Battle_logs_body_name{
-    @apply bg-[#5475DF] flex items-center py-2 px-7 gap-3
+    @apply bg-[#5475DF] flex items-center py-2 px-7 gap-3 w-full min-h-[70px]
 }
 
 .Battle_logs_name_block{
@@ -403,29 +408,28 @@ main {
 
 .Brawler_logs_stats{
     /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
+    
     @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover relative;
-    background-image: url("./img/brawl_ball.jpg");
+    //background-image: url("./img/brawl_ball.jpg");
     height: auto;
     //background: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
     //backdrop-filter: brightness(80%);
     
+    
 }
-/* .Brawler_logs_stats::after {
+.Brawler_logs_stats::after {
     content: '';
     position: absolute;
-    //backdrop-filter: brightness(80%); 
-    width: auto;
-    height: auto;
+    backdrop-filter: brightness(50%)  grayscale(25%); 
+    display: block;
+    width: 100%;
+    height: 100%;
     top: 0; left: 0;
-    background: linear-gradient(to bottom, transparent 0%,  rgba(0,0,0,0.9) 100%);
-}    */
-/* .img_Brawler_logs_stats{
-    //height: 100%;
-    //width: 100%;
-    //backdrop-filter: brightness(80%);
-    //filter: brightness(50%); 
-} */
+    z-index: -1;
+    //background: linear-gradient(to bottom, transparent 0%,  rgba(0,0,0,0.9) 100%);
+}   
+
 
 
 .ul_Brawler_logs_players{
@@ -433,7 +437,7 @@ main {
 }
 
 .li_Brawler_logs_players{
-    @apply w-16 h-[74px] bg-profile_card px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden
+    @apply w-16 h-[74px] bg-[#2A2A2D] px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden
 }
 
 .Brawler_logs_players{
@@ -511,7 +515,7 @@ main {
 
 
 .Card_rank{
-    @apply rounded-lg w-auto h-auto bg-profile_card p-4 
+    @apply rounded-lg w-auto h-auto bg-[#52525B] p-4 
 }
 
 
@@ -539,13 +543,13 @@ main {
 
 
 .LeaderBoard-main{
-    @apply  max-w-full flex items-center justify-center flex-col mb-20
+    @apply  max-w-full flex items-center justify-center flex-col mb-24
 
 }
 
 
 .LeaderBoard-wrapper {
-    @apply flex flex-col max-w-[480px]
+    @apply flex flex-col max-w-[480px] w-full;
 }
 
 .LeaderBoard-btn-input {
@@ -580,7 +584,7 @@ main {
 
 
 .LeaderBoard-brawlers-input-wrapper {
-    @apply flex items-center justify-center gap-3
+    @apply flex items-center justify-center gap-3 text-gray-900
 }
 
 .LeaderBoard-brawlers-input {
@@ -605,9 +609,27 @@ main {
 }
 
 .LeaderBoard-list {
-    @apply bg-profile_card rounded-lg px-5 text-base text-body_bg;
+    @apply bg-[#52525B] rounded-lg px-5 pt-2 pb-2 text-base text-body_bg;
     font-family: "Roboto", sans-serif;
 }
+
+
+.footerLg {
+    @apply w-full bottom-0 absolute h-[72px] text-white p-3 ;
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+     
+}
+
+.list_footerLg{
+    @apply flex flex-col justify-center items-center font-normal text-base gap-2;
+    font-family: 'Roboto';
+    list-style-type: none;
+}
+
+.list_footerLg > li {
+    @apply flex justify-center items-center gap-5
+}
+
 
 /* .ll{
     display: flex;
