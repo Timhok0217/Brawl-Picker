@@ -50,11 +50,6 @@ function LeaderBoard () {
     }, [dataLeaderBoard])
 
     useEffect(()=>{
-        // const player = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankPlayers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        // const brawler = Boolean(dataLeaderBoard.length) &&  dataLeaderBoard[0].rankBrawlers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        //const resPlayer = JSON.parse(player)
-        //const resBrawler = JSON.parse(brawler)
-
         Boolean(dataLeaderBoard.length) && console.log(dataLeaderBoard[0])
         const responseRankPlayers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankPlayers)
         const responseRankBrawlers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankBrawlers)
@@ -126,7 +121,6 @@ function LeaderBoard () {
                 </div>
 
                 <ul className="LeaderBoard-list">
-                    {/* <li className="Top players"><div>Top 20 players</div></li> */}
                     {Boolean(dataLeaderBoard) && togglePlayer ? dataRankPlayers.map((item, index) =>
                         <Link to={`/Profile/${item.tag.slice(1)}`} key={index}> 
                             <li className="flex justify-between items-center my-3" key={index}>

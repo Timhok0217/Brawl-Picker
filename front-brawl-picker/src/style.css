@@ -15,7 +15,7 @@ body{
 }
 
 .header_brawl{
-    @apply flex items-center text-white h-16 lg:h-20 px-7; 
+    @apply flex items-center text-body_bg h-16 lg:h-20 px-7; 
     background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
@@ -25,7 +25,7 @@ body{
 }
 
 .list_header{ 
-    @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-8 ;
+    @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-12 ;
     font-family: 'Roboto';
     list-style-type: none;
     
@@ -93,7 +93,7 @@ main {
 }
 
 .Profile{
-    @apply px-4 mx-8 mb-24 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
+    @apply px-2 mx-4 phone:px-4 phone:mx-8 mb-24 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
     font-family: "Roboto";
 }
 
@@ -169,9 +169,13 @@ main {
     @apply 
 } */
 
+.Brawlers_slider_progbar {
+    @apply flex w-full 
+}
+
 /*Руинит флекс*/ 
 .Brawlers_block{
-    @apply flex items-center -ml-5 lg:-ml-10
+    @apply flex items-center  w-full  lg:-ml-3 justify-center 
      relative 
     /* @apply flex flex-col gap-10 
     lg:flex-row lg:overflow-hidden  */
@@ -205,7 +209,7 @@ main {
 
 @media(min-width:300px){
     .Brawlers_slider{
-        max-width: 210px;
+        max-width: 235px;
         --items-per-screen: 1;
 
     } 
@@ -245,8 +249,8 @@ main {
 
 @media(min-width:1110px){
     .Brawlers_slider{
-        max-width: 720px;
-        --items-per-screen: 3.2;
+        max-width: 705px;
+        --items-per-screen: 3.205;
     } 
 }
 
@@ -351,7 +355,7 @@ main {
 }
 
 .brawl_swiper_main_div{
-    @apply lg:ml-5  phone:mx-auto
+    @apply   phone:mx-auto mx-auto w-full 
 }
 
 .brawl_swiper_main{
@@ -365,7 +369,7 @@ main {
 }
 
 .Battle_logs_header{
-    @apply p-1 px-8 font-medium text-body_bg flex justify-between
+    @apply p-1 px-4 phone:px-8 font-medium text-body_bg flex justify-between
 }
 
 .span_Battle_logs_header{

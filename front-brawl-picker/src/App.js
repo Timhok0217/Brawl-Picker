@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Profile from "./components/Profile";
 import LeaderBoard from "./components/LeaderBoard";
-import BrawlTierList from "./components/BrawlTierList";
 import FooterPhone from "./components/FooterPhone";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
@@ -20,11 +19,6 @@ function App () {
         ent_tag: ''
     })
 
-    //const [show_tag, setShow_tag] = React.useState(false)
-
-    // const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || {
-    //     data: ""
-    // })
 
     function Keep_tag (event) {
         const {name, value} = event.target
@@ -35,23 +29,6 @@ function App () {
             }
         })
     }
-
-    // async function sendToBack() {
-    //     await axios({
-    //         method: 'post',
-    //         url: API_URL,
-    //         data: tag,
-    //     })
-    //         //.then(res => console.log(res))
-    //         .then(res => setData(res))
-    //         .catch(err => console.error(err))
-    //     setShow_tag(prev => !prev)
-    // }
-
-    // React.useEffect ( () => {
-    //     localStorage.setItem("data_tag", JSON.stringify(data))
-    //     //localStorage.clear()
-    // }, [data])
 
 
     return(
@@ -70,10 +47,6 @@ function App () {
                 <Route 
                     path="/Profile/:brawlId"
                     element={<Profile />}
-                />
-                <Route 
-                    path="/BrawlTierList"
-                    element={<BrawlTierList/>}
                 />
                 <Route 
                     path="/LeaderBoard"
