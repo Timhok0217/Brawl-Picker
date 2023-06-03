@@ -1,15 +1,17 @@
 # **Brawl Picker**
 
 
-![node-current](https://img.shields.io/node/v/npm?label=Node%20js)
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Axios](https://img.shields.io/badge/Axios-1.3.1-green)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.2.0-blue)
-![Swiper](https://img.shields.io/badge/Swiper-9.0.0-orange)
+[![JavaScript](https://img.shields.io/badge/-Javascript-090909?style=for-the-badge&logo=javascript&logoColor=#3178C6)](https://github.com/Timhok0217)
+[![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=react&logoColor=#3178C6)](https://github.com/Timhok0217)
+[![Axios](https://img.shields.io/badge/-Axios-090909?style=for-the-badge&logo=axios&logoColor=671DDF)](https://github.com/Timhok0217)
+[![Tailwind](https://img.shields.io/badge/-Tailwind-090909?style=for-the-badge&logo=tailwindcss&logoColor=#28A8E8)](https://github.com/Timhok0217)
+[![Swiper](https://img.shields.io/badge/-Swiper-090909?style=for-the-badge&logo=swiper&logoColor=0080FF)](https://github.com/Timhok0217)
+[![Python](https://img.shields.io/badge/-Python-090909?style=for-the-badge&logo=python&logoColor=#28A8E8)](https://github.com/Timhok0217)
+[![Django](https://img.shields.io/badge/-Django-090909?style=for-the-badge&logo=django&logoColor=0C4B33)](https://github.com/Timhok0217)
 
 
 
-**Brawl Picker** - сайт для просмотра статистики игроков в популярной игре Brawl Stars. 
+**Brawl Picker** - веб-приложение для отслеживания статистики игроков в популярной игре Brawl Stars. 
 
 Если Вы знаете **тэг** игрока - специальный идентификатор в игре, то можно ввести его в соответсвующее на заглавной странице и посмотреть всю статистику:
 * открытые персонажи,
@@ -25,10 +27,9 @@
 
 Также Вам потребуется установить некоторые официальные библиотеки, которые используются в проекте:
 * Вам понадобятся [Node.js](https://nodejs.org/ru/) не ниже версии 14.0.0 и npm не ниже версии 5.6 на вашем компьютере
-* Также следуюет установить библиотеки Axios, Swiper, а также [Tailwind](https://tailwindcss.ru/docs/installation/) для CSS
+* Также следуюет установить библиотеки Axios, Swiper, а также [Tailwind](https://tailwindcss.ru/docs/installation/) для CSS - установите все зависимости с помощью:
   ```
-  npm i axios
-  npm i swiper
+  npm install
   ```
   
 
@@ -41,10 +42,13 @@
 3. Запустите виртуальную среду с помощью команды ```myvenv\Scripts\activate```. Если данная команда выдает ошибку, то попробуйте сначала перейти в директорию Scripts: ```cd myvenv\Scripts``` и оттуда ввести ```activate```.
     ```
     myvenv\Scripts\activate
-    //or
+    ```
+    илиa
+    ```
     cd myvenv\Scripts
     activate
     ```
+
 4. Как только вы запустите виртуальную среду, необходимо находиться в директорию ```\back-brawl-picker\BrawlPicker```. Оттуда нужно запустить сервер следующей командой: ```python manage.py runserver```
     ```
     cd ...\back-brawl-picker\BrawlPicker
