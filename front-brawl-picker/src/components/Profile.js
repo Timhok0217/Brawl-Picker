@@ -2,7 +2,7 @@
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import Brawler_slider from "./Brawler_slider/Brawler_slider"; 
 import "swiper/css"
@@ -13,20 +13,15 @@ import "swiper/css/thumbs"
 import {Swiper, SwiperSlide} from "swiper/react"
 import SwiperCore from "swiper"
 import { Pagination, Navigation } from "swiper"
-//import "swiper/swiper-bundle"
-//import Progress_bar from "./Brawler_slider/Progress_bar";
-//import Card_icon from "https://cdn.brawlify.com/brawler/Bibi.png"
+
 const API_URL = 'http://127.0.0.1:8000/api/'
 SwiperCore.use([Navigation, Pagination])
 function Profile () {
 
     const {brawlId} = useParams()
-    //const [data, setData] = React.useState([])
     const [data, setData] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
     const [brawlers, setBrawlers] = React.useState([])
     const [battle_logs, setBattle_logs] = React.useState([])
-
-    const [responseBattle_logs, setResponseBattle_logs] = React.useState([])
     
     const [clubInfo, setClubInfo] = React.useState([])
     const [clubMembers, setClubMembers] = React.useState([])
@@ -43,13 +38,11 @@ function Profile () {
                 .then(res => setData(res.data))
                 .catch(err => console.error(err))
         })()
-        console.log(brawlId)
+
     },[brawlId])
 
     useEffect(() => {
         localStorage.setItem("data_tag", JSON.stringify(data))
-        //localStorage.clear()
-        console.log(JSON.parse(localStorage.getItem("data_tag")))
     }, [data])
 
     useEffect(()=>{
@@ -57,57 +50,17 @@ function Profile () {
         const resClubParse = JSON.parse(clubParse)
 
         //Замена на прямой вызов к API
-        //Boolean(data.length) && console.log(data[0].response_battle_logs)
         const responseBattle = Boolean(data.length) && JSON.parse(data[0].response_battle_logs)
-        //Boolean(data.length) && console.log("responseBattle", responseBattle.items)
 
-        //const clubMembersParse = Boolean(data.length) && JSON.parse(data[0].club_members[0])
-        // Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
-        // Boolean(data.length) ? setBattle_logs(parsedData) : <></>
-        // Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         Boolean(data.length) ? setBrawlers(eval('{[' + data[0].brawlers + ']}')) : <></>
         
-        //Boolean(data.length) ? setBattle_logs(res) : <></>
         Boolean(data.length) ? setBattle_logs(responseBattle.items) : <></>
 
         Boolean(data.length) ? setClubInfo(data[0].club_info) : <></>
         Boolean(data.length) ? setClubInfo(resClubParse) : <></>
         Boolean(data.length) ? setClubMembers(eval('{[' + data[0].club_members + ']}')) : <></>
-        //Boolean(battle_logs.length) ? setBattle_logs_team(res.battle.teams):<></>
-        //console.log("team", battle_logs_team)
-        console.log("brawlers_obj", brawlers)
-        console.log("battle_log", battle_logs)
-        console.log("clubInfo", clubInfo)
-        console.log("clubMembers", clubMembers)
-        //console.log(l, res)
         
     }, [data])
-
-    // useEffect (() =>{
-    //     battle_logs && localStorage.setItem("data_tag", [])
-    // }, [])
-    
-    
-    // useEffect(()=>{
-    //     (async ()=>{
-    //         await axios({
-    //             method: 'post',
-    //             url: API_URL,
-    //             data: {
-    //                 ent_tag:`#${brawlId}`
-    //             },
-    //         })
-    //             .then(res => setNew_tag(res.data))
-    //             .catch(err => console.error(err))
-    //     })()
-    // },[brawlId])
-
-    // useEffect(() => {
-    //     setData([new_tag, ...data])
-    //     localStorage.setItem("data_tag", JSON.stringify(data))
-    //     //localStorage.clear()
-    // }, [new_tag])
-    //data[0][0].name
 
     
     const slides = [];
@@ -181,7 +134,6 @@ function Profile () {
                             <ul className="ul_Brawler_logs_players">
                                 {item.battle.teams[0].map((item_logs) => 
                                 <Link to={`/Profile/${item_logs.tag.slice(1)}`} >
-                                {/* <div className="Card_rank" onClick={handleChange}> */}
                                     <li className="li_Brawler_logs_players">
                                         <div className="Brawler_logs_players"><span><img src="https://cdn.brawlify.com/icon/trophy.png" className="w-4 h-4" alt="new"/></span> {item_logs.brawler.trophies}</div>
                                         <img src={`https://media.brawltime.ninja/brawlers/${item_logs.brawler.name.toLowerCase().includes(" ") ? item_logs.brawler.name.toLowerCase().includes(".") ? item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf("."))+"__"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase().slice(0, item_logs.brawler.name.toLowerCase().indexOf(" "))+"_"+item_logs.brawler.name.toLowerCase().slice(item_logs.brawler.name.toLowerCase().indexOf(" ")+1)  : item_logs.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
@@ -226,11 +178,6 @@ function Profile () {
                     </div>
             </SwiperSlide>
         ))
-
-    // const slideMode = [] <img src={`https://media.brawltime.ninja/brawlers/${item.brawler.name.toLowerCase().includes(" ") ? item.brawler.name.toLowerCase().includes(".") ? item.brawler.name.toLowerCase().slice(0, item.brawler.name.toLowerCase().indexOf("."))+"__"+item.brawler.name.toLowerCase().slice(item.brawler.name.toLowerCase().indexOf(" ")+1)  : item.brawler.name.toLowerCase().slice(0, item.brawler.name.toLowerCase().indexOf(" "))+"_"+item.brawler.name.toLowerCase().slice(item.brawler.name.toLowerCase().indexOf(" ")+1)  : item.brawler.name.toLowerCase()}/avatar.webp`} className="Brawler_logs_player_img" alt="icon"/>
-                                        
-    // Boolean(data.length) && 
-
 
     return(
         <div className="Profile">

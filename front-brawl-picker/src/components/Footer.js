@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useResolvedPath, useMatch} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 function Footer () {
     return(

@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "swiper/css"
 import "swiper/css/navigation"
@@ -20,17 +19,6 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
      value, handleChange,
      ...props
 }) {
-    //Задержка пока что не работает
-    // const [data_tag, setData_tag] = React.useState(JSON.parse(localStorage.getItem("data_tag")) || [])
-    
-    // let navigate = useNavigate();
-    // function thatClick() {
-    //     console.log(value, name, data_tag[0].tag, value)
-    //     setTimeout(()=> {
-    //         navigate(`/Profile/${value.slice(1)}`);
-    //     }, 1400)
-    //     //handleChange()          
-    // }
 
     const [dataHome, setDataHome] = React.useState(JSON.parse(localStorage.getItem("dataHome")) || [])
     const [dataRankPlayers, setDataRankPlayers] = React.useState([])
@@ -48,31 +36,20 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                 .then(res => setDataHome(res.data))
                 .catch(err => console.error(err))
         })()
-        //console.log(dataHome)
     }, [])
 
     useEffect(() => {
         localStorage.setItem("dataHome", JSON.stringify(dataHome))
-        //localStorage.clear()
-        console.log(JSON.parse(localStorage.getItem("dataHome")))
     }, [dataHome])
 
     useEffect(()=>{
-        //const l = Boolean(dataHome.length) && dataHome[0].rankPlayers.replace(/None/g, '"None"').replace(/Box\(/g, '').replace(/\)/g, '').replaceAll("\'", '"').replace(/([а-яёa-z0-9])"(?=[а-яёa-z0-9])/ig, "$1'").replace(/(🍷)"(♡)/gi, "$1'♡").replace(/(\s)"(\/)/g, "$1'/")
-        //const res = JSON.parse(l)
-
-        //Boolean(dataHome.length) && console.log(dataHome[0].rankPlayers)
         const responseRankPlayers = Boolean(dataHome.length) && JSON.parse(dataHome[0].rankPlayers)
         
         const eventsParse = Boolean(dataHome.length) && JSON.parse(dataHome[0].events)
 
         Boolean(dataHome.length) ? setDataRankPlayers(responseRankPlayers.items) : <></>
-        //Boolean(dataHome.length) ? setDataRankPlayers(res) : <></>
         
         Boolean(dataHome.length) ? setDataEvents(eventsParse) : <></>
-
-        console.log("logPlayers", dataRankPlayers)
-        console.log("logEvents", dataEvents)
     }, [dataHome])
 
 
@@ -102,9 +79,7 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                 <SwiperSlide key={index}>
                     <div className="Battle_logs_Card" >
                         <div className="Battle_logs_header" >
-                            <span className="span_Battle_logs_header">
-
-                            </span>
+                            <span className="span_Battle_logs_header"></span>
 
                             <span className="span_Battle_logs_header">
                                 {
@@ -179,14 +154,6 @@ const APIHOME_URL = 'http://127.0.0.1:8000/apiHome/'
                     <input className="input_tag" type="text" placeholder="Enter your Tag" 
                         name={name} value={value} onChange={handleChange}
                     />
-                    {/* Для задержки {data_tag !== [] && data_tag[0].tag === value 
-                        ?
-                        <Link to={`/Profile/${value.slice(1)}`} >
-                            <button className="btn_tag" onClick={handleChange} > Search </button>
-                        </Link> 
-                        :
-                        <button className="btn_tag" onClick={thatClick} > Search </button>
-                    } */}
                     <Link to={`/Profile/${value.slice(1)}`} >
                         <button className="btn_tag" onClick={handleChange} > Search </button>
                     </Link>

@@ -18,7 +18,6 @@ import {Link, useResolvedPath, useMatch} from "react-router-dom"
 
  function CustomLink ({ to, children, ...props}) {
     const resolvedPath = useResolvedPath(to)
-    // /price/another -> without end; /price -> with end
     const isActive = useMatch ({ path: resolvedPath.pathname, end: true })
     return (
         <li className={isActive ? "active" : ""}>

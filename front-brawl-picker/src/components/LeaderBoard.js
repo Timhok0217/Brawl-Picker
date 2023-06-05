@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
-import {Link, useNavigate } from "react-router-dom";
-import {useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import axios from "axios";
 
@@ -12,9 +11,6 @@ function LeaderBoard () {
     const [dataLeaderBoard, setDataLeaderBoard] = React.useState([])
     const [dataRankPlayers, setDataRankPlayers] = React.useState([])
     const [dataRankBrawlers, setDataRankBrawlers] = React.useState([])
-
-    //Берет инфу с адресной строки
-    //const {brawlerId} = useParams()
 
     const [brawlerName, setBrawlerName] = React.useState({
         ent_name: 'shelly'
@@ -39,30 +35,21 @@ function LeaderBoard () {
                 .then(res => setDataLeaderBoard(res.data))
                 .catch(err => console.error(err))
         })()
-        //console.log(dataLeaderBoard)
-        console.log(brawlerName.ent_name)
     }, [toggleSearch])
 
     useEffect(() => {
         localStorage.setItem("dataLeaderBoard", JSON.stringify(dataLeaderBoard))
-        //localStorage.clear()
-        //console.log(JSON.parse(localStorage.getItem("dataLeaderBoard")))
+        
     }, [dataLeaderBoard])
 
     useEffect(()=>{
-        Boolean(dataLeaderBoard.length) && console.log(dataLeaderBoard[0])
         const responseRankPlayers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankPlayers)
         const responseRankBrawlers = Boolean(dataLeaderBoard.length) && JSON.parse(dataLeaderBoard[0].rankBrawlers)
 
-        //Boolean( dataLeaderBoard.length) ? setDataRankPlayers(resPlayer) : <></>
         Boolean( dataLeaderBoard.length) ? setDataRankPlayers(responseRankPlayers.items) : <></>
 
-
-        //Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(resBrawler) : <></>
         Boolean( dataLeaderBoard.length) ? setDataRankBrawlers(responseRankBrawlers.items) : <></>
-        //console.log(player, resPlayer)
-        //console.log(brawler, resBrawler)
-        //console.log("log", dataRankPlayers)
+
     }, [dataLeaderBoard])
 
     function keepBrawlerName (event) {

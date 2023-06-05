@@ -3,645 +3,549 @@
 @tailwind utilities;
 
 :root {
-    --items-per-screen: 3;
-  }
+  --items-per-screen: 3;
+}
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
-body{
-    @apply min-h-full relative bg-[#18181B] text-body_bg
+body {
+  @apply min-h-full relative bg-[#18181B] text-body_bg;
 }
 
-.header_brawl{
-    @apply flex items-center text-body_bg h-16 lg:h-20 px-7; 
-    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+.header_brawl {
+  @apply flex items-center text-body_bg h-16 lg:h-20 px-7;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
 }
 
-.header_title{
-    @apply font-semibold text-2xl lg:text-3xl leading-6 ml-5 mr-auto text-white;
-    font-family: 'Karla';
+.header_title {
+  @apply font-semibold text-2xl lg:text-3xl leading-6 ml-5 mr-auto text-white;
+  font-family: "Karla";
 }
 
-.list_header{ 
-    @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-12 ;
-    font-family: 'Roboto';
-    list-style-type: none;
-    
+.list_header {
+  @apply flex justify-center items-center font-normal text-lg lg:text-xl gap-12;
+  font-family: "Roboto";
+  list-style-type: none;
 }
 
 .header_brawl a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .header_brawl li.active {
-    @apply text-black
+  @apply text-black;
 }
 
 .header_brawl li:hover {
-    @apply text-gray-400
+  @apply text-gray-400;
 }
 
-.LeaderBoard{
-    @apply hidden lg:flex text-xl
+.LeaderBoard {
+  @apply hidden lg:flex text-xl;
 }
 
-.BrawlerTierList{
-    @apply hidden lg:flex text-xl
+.BrawlerTierList {
+  @apply hidden lg:flex text-xl;
 }
 
-.Profile_link{
-    @apply hidden lg:flex text-xl
-} 
-
-.About_phone{
-    @apply flex lg:hidden
+.Profile_link {
+  @apply hidden lg:flex text-xl;
 }
 
+.About_phone {
+  @apply flex lg:hidden;
+}
 
 main {
-    @apply  px-4 py-10 phone:px-5 sm:px-8 md:px-10 lg:px-14 mb-24;
-    font-family: 'Roboto';
-    
+  @apply px-4 py-10 phone:px-5 sm:px-8 md:px-10 lg:px-14 mb-24;
+  font-family: "Roboto";
 }
 
-.input_there{
-    @apply flex flex-col justify-center items-center self-center 
+.input_there {
+  @apply flex flex-col justify-center items-center self-center;
 }
 
-.input_tag{
-    @apply w-64 h-20 indent-1 text-xl font-medium text-center rounded-3xl border-input_tag border-solid my-2 text-gray-900 uppercase;
-    font-family: "Roboto", sans-serif;
-    border-width: 4px;
+.input_tag {
+  @apply w-64 h-20 indent-1 text-xl font-medium text-center rounded-3xl border-input_tag border-solid my-2 text-gray-900 uppercase;
+  font-family: "Roboto", sans-serif;
+  border-width: 4px;
 }
 
-.btn_tag{
-    @apply  w-28 m-4 rounded-2xl border-0 text-body_bg cursor-pointer h-10 text-lg hover:scale-105; 
-    font-family: "Roboto", sans-serif;
-    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+.btn_tag {
+  @apply w-28 m-4 rounded-2xl border-0 text-body_bg cursor-pointer h-10 text-lg hover:scale-105;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
 }
-
 
 .btn_tag:focus {
-    outline: none;
+  outline: none;
 }
 
 .btn_tag:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
-.Profile{
-    @apply px-2 mx-4 phone:px-4 phone:mx-8 mb-24 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
-    font-family: "Roboto";
+.Profile {
+  @apply px-2 mx-4 phone:px-4 phone:mx-8 mb-24 phone:flex phone:flex-col  lg:flex lg:flex-col items-center lg:items-start 2xl:items-center;
+  font-family: "Roboto";
 }
 
-.Profile_block{
-    @apply flex flex-col phone:items-center gap-12 lg:flex-row lg:items-start
-    /* justify-center items-center */
+.Profile_block {
+  @apply flex flex-col phone:items-center gap-12 lg:flex-row lg:items-start;
 }
 
-.Profile_card{
-    @apply mb-4 flex flex-col items-stretch bg-[#52525B]  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center lg:sticky lg:top-8
+.Profile_card {
+  @apply mb-4 flex flex-col items-stretch bg-[#52525B]  phone:w-96  py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium lg:w-60 lg:items-center lg:sticky lg:top-8;
 }
 
-.Profile_card_name{
-    @apply text-lg flex flex-col justify-center items-center
+.Profile_card_name {
+  @apply text-lg flex flex-col justify-center items-center;
 }
 
-.Profile_card_img{
-    @apply w-28 mx-auto
+.Profile_card_img {
+  @apply w-28 mx-auto;
 }
 
-/* .Profile_card_stats{
-    
-} */
-
-.ul_Profile_card_stats{
-    @apply space-y-1 my-4
+.ul_Profile_card_stats {
+  @apply space-y-1 my-4;
 }
 
-.ul_Profile_card_stats > li{
-    @apply flex justify-between items-stretch  md:gap-5 
+.ul_Profile_card_stats > li {
+  @apply flex justify-between items-stretch  md:gap-5;
 }
 
-.span_Profile_card_stats{   
-    @apply flex justify-center items-center gap-1.5 my-0.5
+.span_Profile_card_stats {
+  @apply flex justify-center items-center gap-1.5 my-0.5;
 }
 
-.footer_phone_brawl{
-    @apply fixed bottom-0 flex items-center text-white h-[72px] px-5 w-full z-10; 
-    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+.footer_phone_brawl {
+  @apply fixed bottom-0 flex items-center text-white h-[72px] px-5 w-full z-10;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
 }
 
-.list_footer_phone{
-    @apply flex justify-around items-center font-normal text-base w-full;
-    font-family: 'Roboto';
-    list-style-type: none;
+.list_footer_phone {
+  @apply flex justify-around items-center font-normal text-base w-full;
+  font-family: "Roboto";
+  list-style-type: none;
 }
 
 .footer_phone_brawl li.active {
-    @apply text-black
+  @apply text-black;
 }
 
 .footer_phone_brawl li:hover {
-    @apply  text-gray-400
+  @apply text-gray-400;
 }
 
-.footer_phone_Profile{
-    
+.Brawlers {
+  @apply flex flex-col items-start;
 }
-
-.footer_phone_LeaderBoard{
-    
-}
-
-.footer_phone_BrawlerTierList{
-    
-}
-
-.Brawlers{
-    @apply flex flex-col items-start 
-}
-
-/* .info_brawlers{
-    @apply 
-} */
 
 .Brawlers_slider_progbar {
-    @apply flex w-full 
+  @apply flex w-full;
 }
 
-/*Руинит флекс*/ 
-.Brawlers_block{
-    @apply flex items-center  w-full  lg:-ml-3 justify-center 
+.Brawlers_block {
+  @apply flex items-center  w-full  lg:-ml-3 justify-center 
      relative 
-    /* @apply flex flex-col gap-10 
-    lg:flex-row lg:overflow-hidden  */
-    /* lg:w-[calc(100%-10rem)]   */
-    lg:overflow-hidden
+    lg:overflow-hidden;
 }
 
-.Brawlers_slider{
-    --items-per-screen: 2.9;
-    @apply flex flex-row gap-5 scroll-smooth p-2 
+.Brawlers_slider {
+  --items-per-screen: 2.9;
+  @apply flex flex-row gap-5 scroll-smooth p-2 
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-xl  
-    lg:flex-row overflow-hidden  ;
-    
+    lg:flex-row overflow-hidden;
 }
 
-@media(min-width:51px){
-    .Brawlers_slider{
-        max-width: 30px;
-        --items-per-screen: 0.5;
-
-    } 
+@media (min-width: 51px) {
+  .Brawlers_slider {
+    max-width: 30px;
+    --items-per-screen: 0.5;
+  }
 }
 
-@media(min-width:180px){
-    .Brawlers_slider{
-        max-width: 140px;
-        --items-per-screen: 1;
-
-    } 
+@media (min-width: 180px) {
+  .Brawlers_slider {
+    max-width: 140px;
+    --items-per-screen: 1;
+  }
 }
 
-@media(min-width:300px){
-    .Brawlers_slider{
-        max-width: 235px;
-        --items-per-screen: 1;
-
-    } 
+@media (min-width: 300px) {
+  .Brawlers_slider {
+    max-width: 235px;
+    --items-per-screen: 1;
+  }
 }
 
-@media(min-width:480px){
-    .Brawlers_slider{
-        max-width: 340px;
-        --items-per-screen: 1;
-
-    } 
+@media (min-width: 480px) {
+  .Brawlers_slider {
+    max-width: 340px;
+    --items-per-screen: 1;
+  }
 }
 
-@media(min-width:660px){
-    .Brawlers_slider{
-        max-width: 520px;
-        --items-per-screen: 2.1;
-
-    } 
+@media (min-width: 660px) {
+  .Brawlers_slider {
+    max-width: 520px;
+    --items-per-screen: 2.1;
+  }
 }
 
-@media(min-width:880px){
-    .Brawlers_slider{
-        max-width: 720px;
-        --items-per-screen: 3.2;
-
-    } 
+@media (min-width: 880px) {
+  .Brawlers_slider {
+    max-width: 720px;
+    --items-per-screen: 3.2;
+  }
 }
 
-@media(min-width:1024px){
-    .Brawlers_slider{
-        max-width: 620px;
-        --items-per-screen: 2.5;
-
-    } 
+@media (min-width: 1024px) {
+  .Brawlers_slider {
+    max-width: 620px;
+    --items-per-screen: 2.5;
+  }
 }
 
-@media(min-width:1110px){
-    .Brawlers_slider{
-        max-width: 705px;
-        --items-per-screen: 3.205;
-    } 
+@media (min-width: 1110px) {
+  .Brawlers_slider {
+    max-width: 705px;
+    --items-per-screen: 3.205;
+  }
 }
 
-@media(min-width:1280px){
-    .Brawlers_slider{
-        max-width: 890px;
-        --items-per-screen: 3.16;
-    } 
+@media (min-width: 1280px) {
+  .Brawlers_slider {
+    max-width: 890px;
+    --items-per-screen: 3.16;
+  }
 }
 
-@media(min-width:1500px){
-    .Brawlers_slider{
-        max-width: 1100px;
-        --items-per-screen: 4.25;
-    } 
+@media (min-width: 1500px) {
+  .Brawlers_slider {
+    max-width: 1100px;
+    --items-per-screen: 4.25;
+  }
 }
 
-
-
-.handle{
-    @apply w-10 bg-input_tag z-10 cursor-pointer opacity-60 rounded-3xl h-10  hover:opacity-100
+.handle {
+  @apply w-10 bg-input_tag z-10 cursor-pointer opacity-60 rounded-3xl h-10  hover:opacity-100;
 }
 
-.handle_left{
-    @apply relative left-7 
+.handle_left {
+  @apply relative left-7;
 }
 
-.handle_left::after{
-    position: absolute;
-    top:25%;
-    left:35%;
-    transform:translate(-50%, -50%);
-    content: '';
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(45deg); 
+.handle_left::after {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-left: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(45deg);
 }
 
-.handle_right{
-    @apply relative right-5
+.handle_right {
+  @apply relative right-5;
 }
 
-.handle_right::after{
-    position: absolute;
-    top:25%;
-    left:20%;
-    transform:translate(-50%, -50%);
-    content: '';
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(225deg); 
+.handle_right::after {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-left: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(225deg);
 }
 
-
-.Brawler_card{
-    @apply flex flex-col justify-center items-stretch max-w-xs lg:whitespace-nowrap hover:scale-105 ease-in-out cursor-pointer
+.Brawler_card {
+  @apply flex flex-col justify-center items-stretch max-w-xs lg:whitespace-nowrap hover:scale-105 ease-in-out cursor-pointer
     bg-[#52525B] w-52 py-4 px-3 space-y-3 rounded-xl text-body_bg font-medium
       lg:w-52;
-      /* lg:items-center */
-      flex: 0 0 calc(100% / var(--items-per-screen))
-      /* lg:-translate-x-full    */
+  flex: 0 0 calc(100% / var(--items-per-screen));
 }
 
-.Brawler_card_name{
-    @apply text-lg flex flex-col justify-center items-center
+.Brawler_card_name {
+  @apply text-lg flex flex-col justify-center items-center;
 }
 
-.Brawler_card_img{
-    @apply w-28 h-24 mx-auto
+.Brawler_card_img {
+  @apply w-28 h-24 mx-auto;
 }
 
-.ul_Brawler_card_stats{
-    @apply space-y-1 
+.ul_Brawler_card_stats {
+  @apply space-y-1;
 }
 
-.ul_Brawler_card_stats > li{
-    @apply flex justify-between items-stretch  md:gap-4 
+.ul_Brawler_card_stats > li {
+  @apply flex justify-between items-stretch  md:gap-4;
 }
 
-.Brawlers_slider_progbar{
-    @apply flex flex-col items-start gap-1  
+.Brawlers_slider_progbar {
+  @apply flex flex-col items-start gap-1;
 }
 
-.slider-indicators{
-    @apply flex items-center gap-1 
+.slider-indicators {
+  @apply flex items-center gap-1 
     relative 
-   /* @apply flex flex-col gap-10 
-   lg:flex-row lg:overflow-hidden  */
-   /* lg:w-[calc(100%-10rem)]   */
-   lg:overflow-hidden
-    /* flex gap-4  */
+   lg:overflow-hidden;
 }
 
-.indicator{
-    @apply  h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer 
+.indicator {
+  @apply h-4 w-4 bg-input_tag opacity-50 active:opacity-100 rounded-3xl cursor-pointer;
 }
 
-.brawl_swiper_main_div{
-    @apply   phone:mx-auto mx-auto w-full 
+.brawl_swiper_main_div {
+  @apply phone:mx-auto mx-auto w-full;
 }
 
-.brawl_swiper_main{
-    @apply md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
+.brawl_swiper_main {
+  @apply md:max-w-screen-sm sm:max-w-[500px] phone:max-w-[380px] small_ph:max-w-[320px]
     lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg 
-    overflow-hidden  
+    overflow-hidden;
 }
 
-.Battle_logs_Card{
-    @apply w-auto rounded-lg bg-[#52525B] h-auto 
+.Battle_logs_Card {
+  @apply w-auto rounded-lg bg-[#52525B] h-auto;
 }
 
-.Battle_logs_header{
-    @apply p-1 px-4 phone:px-8 font-medium text-body_bg flex justify-between
+.Battle_logs_header {
+  @apply p-1 px-4 phone:px-8 font-medium text-body_bg flex justify-between;
 }
 
-.span_Battle_logs_header{
-    @apply flex gap-1 items-center
+.span_Battle_logs_header {
+  @apply flex gap-1 items-center;
 }
 
-.span_Battle_logs_header_result{
-    @apply mr-3
+.span_Battle_logs_header_result {
+  @apply mr-3;
 }
 
-.span_Battle_logs_header_trophy{
-    @apply flex
+.span_Battle_logs_header_trophy {
+  @apply flex;
 }
 
-/* .Battle_logs_header{
-    @apply 
-} */
-
-.Battle_logs_body_name{
-    @apply bg-[#5475DF] flex items-center py-2 px-7 gap-3 w-full min-h-[70px]
+.Battle_logs_body_name {
+  @apply bg-[#5475DF] flex items-center py-2 px-7 gap-3 w-full min-h-[70px];
 }
 
-.Battle_logs_name_block{
-    @apply flex flex-col text-body_bg
+.Battle_logs_name_block {
+  @apply flex flex-col text-body_bg;
 }
 
-.Battle_logs_name_mode{
-    @apply text-lg font-medium 
+.Battle_logs_name_mode {
+  @apply text-lg font-medium;
 }
 
-.Battle_logs_name_map{
-    @apply text-base font-medium 
+.Battle_logs_name_map {
+  @apply text-base font-medium;
 }
 
-.Battle_logs_body_name_img{
-    @apply w-9 h-9 
+.Battle_logs_body_name_img {
+  @apply w-9 h-9;
 }
 
+.Brawler_logs_stats {
+  @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover relative;
+  height: auto;
 
-
-.Brawler_logs_stats{
-    /*@apply bg-[url('Brawlpicker\bralwstars_picker\front-brawl-picker\src\img\brawl_ball.jpg')]*/
-    
-    @apply rounded-b-lg px-5 py-6 opacity-100 bg-cover relative;
-    //background-image: url("./img/brawl_ball.jpg");
-    height: auto;
-    //background: rgba(0, 0, 0, 0.5);
-    background-repeat: no-repeat;
-    //backdrop-filter: brightness(80%);
-    
-    
+  background-repeat: no-repeat;
 }
+
 .Brawler_logs_stats::after {
-    content: '';
-    position: absolute;
-    backdrop-filter: brightness(50%)  grayscale(25%); 
-    display: block;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0;
-    z-index: -1;
-    //background: linear-gradient(to bottom, transparent 0%,  rgba(0,0,0,0.9) 100%);
-}   
-
-
-
-.ul_Brawler_logs_players{
-    @apply  grid small_ph:grid-cols-3 sm:grid-cols-6 phone:gap-x-14 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
+  content: "";
+  position: absolute;
+  backdrop-filter: brightness(50%) grayscale(25%);
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-.li_Brawler_logs_players{
-    @apply w-16 h-[74px] bg-[#2A2A2D] px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden
+.ul_Brawler_logs_players {
+  @apply grid small_ph:grid-cols-3 sm:grid-cols-6 phone:gap-x-14 phone:gap-y-3 mx-auto sm:gap-5 gap-3;
 }
 
-.Brawler_logs_players{
-    @apply  flex items-center text-sm font-medium gap-1
+.li_Brawler_logs_players {
+  @apply w-16 h-[74px] bg-[#2A2A2D] px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden;
 }
 
-.Brawler_logs_player_img{
-    @apply mx-auto w-10 h-8 mt-0.5
+.Brawler_logs_players {
+  @apply flex items-center text-sm font-medium gap-1;
 }
 
-.Brawler_logs_players_name{
-    @apply text-xs overflow-hidden text-ellipsis leading-5 h-5
-     
+.Brawler_logs_player_img {
+  @apply mx-auto w-10 h-8 mt-0.5;
 }
 
-.ul_Brawler_logs_players_shd{
-    @apply  grid md_ph:grid-cols-5 small_ph:grid-cols-3 md:gap-x-10 phone:gap-y-3 mx-auto sm:gap-5 gap-3; 
+.Brawler_logs_players_name {
+  @apply text-xs overflow-hidden text-ellipsis leading-5 h-5;
 }
 
-.li_Brawler_logs_players_shd{
-    @apply w-16 h-[74px] bg-profile_card px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden
+.ul_Brawler_logs_players_shd {
+  @apply grid md_ph:grid-cols-5 small_ph:grid-cols-3 md:gap-x-10 phone:gap-y-3 mx-auto sm:gap-5 gap-3;
 }
 
-.Brawler_logs_players_shd{
-    @apply  flex items-center text-sm font-medium gap-1
+.li_Brawler_logs_players_shd {
+  @apply w-16 h-[74px] bg-profile_card px-1 rounded-md bg-opacity-80 text-body_bg font-normal text-center overflow-hidden;
 }
 
-.Brawler_logs_players_name_shd{
-    @apply text-xs overflow-hidden text-ellipsis leading-5 
+.Brawler_logs_players_shd {
+  @apply flex items-center text-sm font-medium gap-1;
 }
 
+.Brawler_logs_players_name_shd {
+  @apply text-xs overflow-hidden text-ellipsis leading-5;
+}
 
-
-
-/* .mainHome{
-    @apply flex-col justify-center items-center
-} */
-
-
-.rank_swiper_main_div{
-    @apply  md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
+.rank_swiper_main_div {
+  @apply md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
     lg:max-w-screen-md xl:max-w-screen-lg  2xl:max-w-screen-xl
     flex flex-col
-     mx-auto my-16 rounded-2xl border-input_tag border-solid; 
-
-    //border-width: 3px; 2xl:max-w-screen-2xl
+     mx-auto my-16 rounded-2xl border-input_tag border-solid;
 }
-
 
 .rank_swiper_and_btn {
-    @apply flex-col items-center;
-    display: flex;
+  @apply flex-col items-center;
+  display: flex;
 }
 
-.rank_swiper_main{
-    @apply   md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
+.rank_swiper_main {
+  @apply md:max-w-[690px] sm:max-w-[550px] phone:max-w-[440px] max-w-[250px]
     lg:max-w-screen-md xl:max-w-screen-lg 2xl:max-w-screen-xl m-6 
      overflow-hidden p-10;
-    
 }
 
-.btnToLeaders{
-    @apply w-28 m-2 rounded-2xl border-0 text-white cursor-pointer h-11 text-sm hover:scale-105; 
-    font-family: "Roboto", sans-serif;
-    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+.btnToLeaders {
+  @apply w-28 m-2 rounded-2xl border-0 text-white cursor-pointer h-11 text-sm hover:scale-105;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
 }
 
 .btnToLeaders:focus {
-    outline: none;
+  outline: none;
 }
 
 .btnToLeaders:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
-
-.Card_rank{
-    @apply rounded-lg w-auto h-auto bg-[#52525B] p-4 
+.Card_rank {
+  @apply rounded-lg w-auto h-auto bg-[#52525B] p-4;
 }
 
-
-
-.Card_rank_header{
-    @apply text-base text-body_bg font-medium flex justify-between items-center mb-4 
+.Card_rank_header {
+  @apply text-base text-body_bg font-medium flex justify-between items-center mb-4;
 }
 
-.Card_rank_body{
-    @apply text-body_bg font-medium flex justify-between items-center
+.Card_rank_body {
+  @apply text-body_bg font-medium flex justify-between items-center;
 }
 
-.swiper-button-next::after{
-    font-size: 30px !important;
-    margin-left: 30px !important;
-    font-weight: 700 !important;
-
+.swiper-button-next::after {
+  font-size: 30px !important;
+  margin-left: 30px !important;
+  font-weight: 700 !important;
 }
 
-.swiper-button-prev:after{
-    font-size: 30px !important;
-    margin-right: 30px !important;
-    font-weight: 700 !important;
+.swiper-button-prev:after {
+  font-size: 30px !important;
+  margin-right: 30px !important;
+  font-weight: 700 !important;
 }
 
-
-.LeaderBoard-main{
-    @apply  max-w-full flex items-center justify-center flex-col mb-24
-
+.LeaderBoard-main {
+  @apply max-w-full flex items-center justify-center flex-col mb-24;
 }
-
 
 .LeaderBoard-wrapper {
-    @apply flex flex-col max-w-[480px] w-full;
+  @apply flex flex-col max-w-[480px] w-full;
 }
 
 .LeaderBoard-btn-input {
-    @apply flex gap-5 mb-4 flex-col
+  @apply flex gap-5 mb-4 flex-col;
 }
 
 .LeaderBoard-player {
-    @apply w-28 bg-input_tag rounded-2xl h-10 text-body_bg font-medium hover:scale-105 active:text-black focus:text-black; 
-    font-family: "Roboto", sans-serif;
+  @apply w-28 bg-input_tag rounded-2xl h-10 text-body_bg font-medium hover:scale-105 active:text-black focus:text-black;
+  font-family: "Roboto", sans-serif;
 }
 
 .LeaderBoard-brawlers {
-    @apply w-28 bg-input_tag rounded-2xl text-body_bg font-medium h-10 hover:scale-105 active:text-black focus:text-black; 
-    font-family: "Roboto", sans-serif;
+  @apply w-28 bg-input_tag rounded-2xl text-body_bg font-medium h-10 hover:scale-105 active:text-black focus:text-black;
+  font-family: "Roboto", sans-serif;
 }
 
 .LeaderBoard-player:focus {
-    outline: none;
+  outline: none;
 }
 
 .LeaderBoard-player:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
 .LeaderBoard-brawlers:focus {
-    outline: none;
+  outline: none;
 }
 
 .LeaderBoard-brawlers:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
-
 .LeaderBoard-brawlers-input-wrapper {
-    @apply flex items-center justify-center gap-3 text-gray-900
+  @apply flex items-center justify-center gap-3 text-gray-900;
 }
 
 .LeaderBoard-brawlers-input {
-    @apply w-40 h-10 indent-1 text-base font-medium text-center rounded-xl border-input_tag border-solid my-2;
-    font-family: "Roboto", sans-serif;
-    border-width: 3px;
+  @apply w-40 h-10 indent-1 text-base font-medium text-center rounded-xl border-input_tag border-solid my-2;
+  font-family: "Roboto", sans-serif;
+  border-width: 3px;
 }
 
-
-.LeaderBoard-brawlers-input-btn{
-    @apply  w-20 m-4 rounded-2xl border-0  bg-input_tag text-body_bg cursor-pointer h-8 text-base hover:scale-105; 
-    font-family: "Roboto", sans-serif;
-
+.LeaderBoard-brawlers-input-btn {
+  @apply w-20 m-4 rounded-2xl border-0  bg-input_tag text-body_bg cursor-pointer h-8 text-base hover:scale-105;
+  font-family: "Roboto", sans-serif;
 }
 
 .LeaderBoard-brawlers-input-btn:focus {
-    outline: none;
+  outline: none;
 }
 
 .LeaderBoard-brawlers-input-btn:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
 .LeaderBoard-list {
-    @apply bg-[#52525B] rounded-lg px-5 pt-2 pb-2 text-base text-body_bg;
-    font-family: "Roboto", sans-serif;
+  @apply bg-[#52525B] rounded-lg px-5 pt-2 pb-2 text-base text-body_bg;
+  font-family: "Roboto", sans-serif;
 }
-
 
 .footerLg {
-    @apply w-full bottom-0 absolute h-[72px] text-white p-3 ;
-    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
-     
+  @apply w-full bottom-0 absolute h-[72px] text-white p-3;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
 }
 
-.list_footerLg{
-    @apply flex flex-col justify-center items-center font-normal text-base gap-2;
-    font-family: 'Roboto';
-    list-style-type: none;
+.list_footerLg {
+  @apply flex flex-col justify-center items-center font-normal text-base gap-2;
+  font-family: "Roboto";
+  list-style-type: none;
 }
 
 .list_footerLg > li {
-    @apply flex justify-center items-center gap-5
+  @apply flex justify-center items-center gap-5;
 }
-
-
-/* .ll{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
-
-
-
-

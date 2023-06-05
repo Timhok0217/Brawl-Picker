@@ -1,12 +1,8 @@
-import React, {useEffect} from "react";
-import {Link, useLocation, useNavigate } from "react-router-dom";
-import {useParams} from "react-router-dom";
+import React from "react";
+import {Link, useLocation } from "react-router-dom";
 
-import axios from "axios";
 
 function Club () {
-    
-    //const {clubTag} = useParams()
     const {state} = useLocation()
 
     return(
@@ -23,7 +19,6 @@ function Club () {
                     </li>
                     <li className="italic mb-5">{state.clubInfo[2]}</li>
                     <li className="w-100%"><div className="h-1 w-100% border mb-5"></div></li>
-                    {console.log(state)}
                     {state.clubMembers[0].map((item, index) =>
                         <Link to={`/Profile/${item.tag.slice(1)}`} key={index}> 
                             <li className="flex justify-between items-center my-3" key={index}>
